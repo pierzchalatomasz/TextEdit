@@ -21,6 +21,7 @@ TextEdit::~TextEdit()
     delete ui;
 }
 
+// Ładuje plik
 void TextEdit::loadFile(QString fileName)
 {
     QFile file(fileName);
@@ -42,6 +43,7 @@ void TextEdit::loadFile(QString fileName)
     QTextCursor textCursor = ui->textEdit->textCursor();
 }
 
+// Aktywuje kolorowanie składni
 void TextEdit::syntaxHighlighter()
 {
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
@@ -53,6 +55,7 @@ void TextEdit::on_actionOpenFile_triggered()
     loadFile(fileName);
 }
 
+// Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
 void TextEdit::on_textEdit_cursorPositionChanged()
 {
     QTextEdit::ExtraSelection lineHighlight;
