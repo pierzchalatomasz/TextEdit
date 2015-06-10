@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         textedit.cpp \
-    syntaxhighlighter.cpp
+    syntaxhighlighter.cpp \
+    menu.cpp \
+    files.cpp
 
 HEADERS  += textedit.h \
-    syntaxhighlighter.h
+    syntaxhighlighter.h \
+    menu.h \
+    files.h
 
 FORMS    += textedit.ui
