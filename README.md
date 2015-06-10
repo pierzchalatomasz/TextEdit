@@ -1,3 +1,3 @@
 # TextEdit
-# Klasy:
-# TextEdit - G³ówna klasa programu
+Klasy:
+TextEdit - G³ówna klasa programu
