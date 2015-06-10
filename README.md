@@ -1,11 +1,10 @@
-<meta charset="utf-8">
 # TextEdit
 Klasy:
 <br>
-<strong>TextEdit</strong> - G³ówna klasa programu
+<strong>TextEdit</strong> - Glowna klasa programu
 <br>
-<strong>SyntaxHighlighter</strong> - Formatowanie sk³adni
+<strong>SyntaxHighlighter</strong> - Formatowanie skladni
 <br>
-<strong>Menu</strong> - Menu g³ówne programu
+<strong>Menu</strong> - Menu glowne programu
 <br>
-<strong>Files</strong> - Obs³uga plików
+<strong>Files</strong> - Obs³uga plikow
