@@ -18,6 +18,7 @@ void SyntaxHighlighter::highlightBlock(const QString &text)
     regExpFormatting( text, "<!--[\\s]*[A-Za-z0-9\\s]*[\\s]*-->", Qt::gray );
 }
 
+// Kolorowanie określonego wyrażenia regularnego
 void SyntaxHighlighter::regExpFormatting( const QString &text, QString pattern, enum Qt::GlobalColor color )
 {
     QTextCharFormat markup;
