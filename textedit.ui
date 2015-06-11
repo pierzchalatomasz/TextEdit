@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>692</width>
-    <height>414</height>
+    <width>689</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,27 +17,100 @@
    <string notr="true">background: #333;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>671</width>
-      <height>361</height>
-     </rect>
+   <property name="styleSheet">
+    <string notr="true">border: none;
+margin: 30px;
+background: transparent;</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>15</number>
     </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>11</pointsize>
-     </font>
+    <property name="topMargin">
+     <number>15</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;
+    <property name="rightMargin">
+     <number>15</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <family>Segoe UI Light</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #222;
+padding: 0;
+margin: 0px</string>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: #333;
+color: #fff;
+padding: 0;</string>
+       </property>
+       <attribute name="title">
+        <string>test.html</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="textEdit">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: none;
 background: #444;
 color: #ccc;</string>
-    </property>
-   </widget>
+          </property>
+          <property name="tabStopWidth">
+           <number>20</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="enabled">
@@ -47,17 +120,39 @@ color: #ccc;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>692</width>
+     <width>689</width>
      <height>21</height>
     </rect>
    </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
+   </property>
    <widget class="QMenu" name="menuPlik">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>Plik</string>
     </property>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>false</bool>
+    </property>
+    <addaction name="actionNewFile"/>
     <addaction name="actionOpenFile"/>
    </widget>
+   <widget class="QMenu" name="menuSzukaj">
+    <property name="title">
+     <string>Szukaj</string>
+    </property>
+   </widget>
    <addaction name="menuPlik"/>
+   <addaction name="menuSzukaj"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -67,6 +162,11 @@ color: #ccc;</string>
   <action name="actionOpenFile">
    <property name="text">
     <string>Otwórz</string>
+   </property>
+  </action>
+  <action name="actionNewFile">
+   <property name="text">
+    <string>Nowy</string>
    </property>
   </action>
  </widget>

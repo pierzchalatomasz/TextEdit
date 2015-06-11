@@ -6,6 +6,8 @@
 #include <QDialog>
 #include <syntaxhighlighter.h>
 #include <QFileDialog>
+#include <QBrush>
+#include "styles.h"
 
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
@@ -14,6 +16,10 @@ TextEdit::TextEdit(QWidget *parent) :
     ui->setupUi(this);
     loadFile("test.html");
     syntaxHighlighter();
+
+    Styles *stylesInit = new Styles();
+
+    ui->menuBar->setStyleSheet("background: #fff; color: #333;");
 }
 
 TextEdit::~TextEdit()
@@ -58,12 +64,20 @@ void TextEdit::on_actionOpenFile_triggered()
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
 void TextEdit::on_textEdit_cursorPositionChanged()
 {
+
     QTextEdit::ExtraSelection lineHighlight;
     lineHighlight.cursor = ui->textEdit->textCursor();
     lineHighlight.format.setProperty(QTextFormat::FullWidthSelection, true);
-    lineHighlight.format.setBackground( Qt::darkGray );
+    lineHighlight.format.setBackground(Qt::gray);
 
     QList<QTextEdit::ExtraSelection> extras;
     extras << lineHighlight;
     ui->textEdit->setExtraSelections( extras );
+}
+
+void TextEdit::on_actionNewFile_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName();
+    loadFile(fileName);
+    ui->tabWidget->addTab(new QTextEdit, fileName);
 }

@@ -20,6 +20,8 @@ private slots:
 
     void on_textEdit_cursorPositionChanged();
 
+    void on_actionNewFile_triggered();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );
