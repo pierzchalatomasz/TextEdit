@@ -3,7 +3,7 @@
 void SyntaxHighlighter::highlightBlock(const QString &text)
 {
     // Elementy, np. <div>
-    regExpFormatting( text, "</{0,1}[A-Za-z0-9_-]*[\\s]*[A-Za-z0-9-_.\"=\\s]*[^\\s]>", Qt::magenta );
+    regExpFormatting( text, "</{0,1}[A-Za-z0-9_-]*[\\s]*[A-Za-z0-9-_.\"=\\s#;:]*[^\\s]>", Qt::magenta );
 
     // id
     regExpFormatting( text, "id=", Qt::cyan );
@@ -12,7 +12,7 @@ void SyntaxHighlighter::highlightBlock(const QString &text)
     regExpFormatting( text, "class=", Qt::yellow );
 
     // Wewnątrz ""
-    regExpFormatting( text, "\"[A-Za-z0-9-_\\s.]*\"", Qt::green );
+    regExpFormatting( text, "\"[A-Za-z0-9-_\\s.;:#]*\"", Qt::green );
 
     // Komentarze
     regExpFormatting( text, "<!--[\\s]*[A-Za-z0-9\\s]*[\\s]*-->", Qt::gray );
