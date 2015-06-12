@@ -28,7 +28,7 @@ background: transparent;</string>
       <x>10</x>
       <y>30</y>
       <width>661</width>
-      <height>331</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="font">
@@ -63,92 +63,33 @@ padding: 0;</string>
      <attribute name="title">
       <string>test.html</string>
      </attribute>
-     <widget class="QTextEdit" name="textEdit">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>661</width>
-        <height>301</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: none;
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="font">
+         <font>
+          <family>Consolas</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
 background: #444;
 color: #ccc;</string>
-      </property>
-      <property name="tabStopWidth">
-       <number>20</number>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab">
-       <property name="acceptDrops">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background: #333;
-color: #fff;
-padding: 0;</string>
-       </property>
-       <attribute name="title">
-        <string>test.html</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
         </property>
-        <property name="leftMargin">
+        <property name="tabStopWidth">
+         <number>20</number>
+        </property>
+        <property name="currentIndex" stdset="0">
          <number>0</number>
         </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QTextEdit" name="textEdit">
-          <property name="font">
-           <font>
-            <family>Consolas</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: none;
-background: #444;
-color: #ccc;</string>
-          </property>
-          <property name="tabChangesFocus">
-           <bool>false</bool>
-          </property>
-          <property name="tabStopWidth">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
+   <zorder>tabWidget</zorder>
+   <zorder>textEdit</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="enabled">
