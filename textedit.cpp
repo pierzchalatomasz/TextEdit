@@ -81,3 +81,20 @@ void TextEdit::on_actionNewFile_triggered()
     loadFile(fileName);
     ui->tabWidget->addTab(new QTextEdit, fileName);
 }
+
+//Obsługa poleceń z menu edycja
+void TextEdit::on_actionPaste_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_V, Qt::ControlModifier));
+}
+
+void TextEdit::on_actionCopy_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_C, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_C, Qt::ControlModifier));
+}
+
+void TextEdit::on_actionCut_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_X, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_X, Qt::ControlModifier));
+}
+

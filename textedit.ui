@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>689</width>
-    <height>413</height>
+    <width>680</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,95 +22,73 @@
 margin: 30px;
 background: transparent;</string>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <property name="leftMargin">
-     <number>15</number>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>661</width>
+      <height>331</height>
+     </rect>
     </property>
-    <property name="topMargin">
-     <number>15</number>
+    <property name="font">
+     <font>
+      <family>Segoe UI Light</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
-    <property name="rightMargin">
-     <number>15</number>
+    <property name="styleSheet">
+     <string notr="true">color: #222;
+padding: 0;
+margin: 0px</string>
     </property>
-    <property name="bottomMargin">
-     <number>15</number>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
     </property>
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: #333;
+color: #fff;
+padding: 0;</string>
+     </property>
+     <attribute name="title">
+      <string>test.html</string>
+     </attribute>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>661</width>
+        <height>301</height>
+       </rect>
+      </property>
       <property name="font">
        <font>
-        <family>Segoe UI Light</family>
-        <pointsize>10</pointsize>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #222;
-padding: 0;
-margin: 0px</string>
-      </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab">
-       <property name="acceptDrops">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background: #333;
-color: #fff;
-padding: 0;</string>
-       </property>
-       <attribute name="title">
-        <string>test.html</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QTextEdit" name="textEdit">
-          <property name="font">
-           <font>
-            <family>Consolas</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: none;
+       <string notr="true">border: none;
 background: #444;
 color: #ccc;</string>
-          </property>
-          <property name="tabStopWidth">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      </property>
+      <property name="tabStopWidth">
+       <number>20</number>
+      </property>
      </widget>
-    </item>
-   </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="enabled">
@@ -120,7 +98,7 @@ color: #ccc;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>689</width>
+     <width>680</width>
      <height>21</height>
     </rect>
    </property>
@@ -151,8 +129,18 @@ color: #ccc;</string>
      <string>Szukaj</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuEdycja">
+    <property name="title">
+     <string>Edycja</string>
+    </property>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+   </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
+   <addaction name="menuEdycja"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -167,6 +155,21 @@ color: #ccc;</string>
   <action name="actionNewFile">
    <property name="text">
     <string>Nowy</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Wytnij</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Kopiuj</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Wklej</string>
    </property>
   </action>
  </widget>

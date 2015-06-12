@@ -22,6 +22,10 @@ private slots:
 
     void on_actionNewFile_triggered();
 
+    void on_actionCopy_triggered();
+    void on_actionCut_triggered();
+    void on_actionPaste_triggered();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );
