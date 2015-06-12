@@ -22,6 +22,8 @@ private slots:
 
     void on_actionNewFile_triggered();
 
+    void on_textEdit_textChanged();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );
