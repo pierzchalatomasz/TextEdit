@@ -101,6 +101,9 @@ padding: 0;</string>
 background: #444;
 color: #ccc;</string>
           </property>
+          <property name="tabChangesFocus">
+           <bool>false</bool>
+          </property>
           <property name="tabStopWidth">
            <number>20</number>
           </property>
