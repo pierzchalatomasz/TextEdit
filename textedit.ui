@@ -39,6 +39,7 @@ background: transparent;</string>
 padding: 0;
 margin: 0px</string>
       </property>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>
@@ -61,10 +62,10 @@ padding: 0;</string>
         <string>test.html</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
-        <property name="leftMargin">
-         <number>0</number>
+        <property name="tabStopWidth">
+         <number>20</number>
         </property>
-        <property name="topMargin">
+        <property name="currentIndex" stdset="0">
          <number>0</number>
         </property>
         <property name="rightMargin">
@@ -99,6 +100,8 @@ color: #ccc;</string>
      </widget>
     </item>
    </layout>
+   <zorder>tabWidget</zorder>
+   <zorder>textEdit</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="enabled">
