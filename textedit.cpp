@@ -66,7 +66,10 @@ void TextEdit::on_textEdit_cursorPositionChanged()
     QTextEdit::ExtraSelection lineHighlight;
     lineHighlight.cursor = ui->textEdit->textCursor();
     lineHighlight.format.setProperty(QTextFormat::FullWidthSelection, true);
-    lineHighlight.format.setBackground(Qt::Dense7Pattern);
+    QColor color;
+    color.setRgb(85,85,85);
+    QBrush brush(color);
+    lineHighlight.format.setBackground(brush);
 
     QList<QTextEdit::ExtraSelection> extras;
     extras << lineHighlight;
