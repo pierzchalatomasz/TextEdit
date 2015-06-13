@@ -26,3 +26,6 @@ HEADERS  += textedit.h \
     textblock.h
 
 FORMS    += textedit.ui
+
+RESOURCES += \
+    icons.qrc

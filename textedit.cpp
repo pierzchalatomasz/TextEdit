@@ -17,6 +17,8 @@ TextEdit::TextEdit(QWidget *parent) :
     loadFile("test.html");
     syntaxHighlighter();
 
+    TextEdit::setWindowIcon(QIcon(":/icons/icons/pencil.png"));
+
     Styles *stylesInit = new Styles();
 
     ui->menuBar->setStyleSheet("background: #fff; color: #333;");
