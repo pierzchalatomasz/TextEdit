@@ -67,7 +67,7 @@ void TextEdit::on_textEdit_cursorPositionChanged()
     lineHighlight.cursor = ui->textEdit->textCursor();
     lineHighlight.format.setProperty(QTextFormat::FullWidthSelection, true);
     QColor color;
-    color.setRgb(85,85,85);
+    color.setRgb(60, 60, 60);
     QBrush brush(color);
     lineHighlight.format.setBackground(brush);
 
@@ -165,6 +165,6 @@ void TextEdit::on_textEdit_textChanged()
         //ui->textEdit->textCursor().insertText(tabs);
         ui->textEdit->textCursor().insertText("\t");
 
-        currentLine.setUserState(-1);
+        currentLine.setUserState(1);
     }
 }

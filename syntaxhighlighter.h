@@ -14,7 +14,7 @@ public:
     {};
 
     void highlightBlock(const QString &text);
-    void regExpFormatting(const QString &text, QString pattern, Qt::GlobalColor color );
+    void regExpFormatting(const QString &text, QString pattern, QColor color );
 };
 
 #endif // SYNTAXHIGHLIGHTER_H
