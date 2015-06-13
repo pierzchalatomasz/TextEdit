@@ -16,9 +16,7 @@ SOURCES += main.cpp\
         textedit.cpp \
     syntaxhighlighter.cpp \
     files.cpp \
-    styles.cpp \
-    textblockuserdata.cpp \
-    textblock.cpp
+    styles.cpp
 
 HEADERS  += textedit.h \
     syntaxhighlighter.h \

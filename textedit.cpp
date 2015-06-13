@@ -22,32 +22,6 @@ TextEdit::TextEdit(QWidget *parent) :
     Styles *stylesInit = new Styles();
 
     ui->menuBar->setStyleSheet("background: #fff; color: #333;");
-
- /*   QTextBlock block = ui->textEdit->textCursor().block();
-    while(block.isValid())
-    {
-        QTextBlockUserData *openingsClosings = new QTextBlockUserData();
-        block.setUserData(openingsClosings);
-
-        // Testing
-        QString testString = block.text() + "\n";
-        ui->testingConsole->insertPlainText(testString);
-
-        block = block.next();
-    }
-
-    /*TextBlock block = ui->textEdit->textCursor().block();
-    while(block.isValid())
-    {
-        TextBlockUserData *openingsClosings = new TextBlockUserData;
-        block.setUserData(openingsClosings);
-
-        // Testing
-        QString testString = block.text() + "\n";
-        ui->testingConsole->insertPlainText(testString);
-
-        block = block.next();
-    }*/
 }
 
 TextEdit::~TextEdit()
@@ -100,8 +74,29 @@ void TextEdit::on_textEdit_cursorPositionChanged()
     extras << lineHighlight;
     ui->textEdit->setExtraSelections( extras );
 
-    //lineHighlight.cursor.insertText("text");
-    //cursor.insertText("test");
+    // Dodawanie tabów wewnątrz elementu
+    QTextBlock currentLine = ui->textEdit->textCursor().block();
+    if(currentLine.text().isEmpty() && currentLine.userState() == -1)
+    {
+        QString tab = "\t";
+        int tabsNumber = 0;
+        int tabsCounter = currentLine.previous().text().indexOf(tab);
+
+        while(tabsCounter >= 0)
+        {
+            tabsNumber++;
+            tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
+        }
+
+        QString tabs;
+        int i = 0;
+        while(i < tabsNumber)
+        {
+            tabs.append("\t");
+            i++;
+        }
+        ui->textEdit->textCursor().insertText(tabs);
+    }
 }
 
 // Otwieranie nowego pliku
@@ -128,7 +123,7 @@ void TextEdit::on_actionCut_triggered(){
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_X, Qt::ControlModifier));
 }
 
-// Dodawanie znaczników
+// Zamykanie znaczników
 void TextEdit::on_textEdit_textChanged()
 {
     QTextBlock currentLine = ui->textEdit->textCursor().block();
@@ -138,19 +133,37 @@ void TextEdit::on_textEdit_textChanged()
     QRegExp expression("<div>");
     int index = currentLine.text().indexOf(expression);
 
-    //TextBlockUserData *openingsClosings = new TextBlockUserData;
-    //currentLine.setUserData(openingsClosings);
-
     QTextBlockUserData *openingsClosings = currentLine.userData();
 
     if (index >= 0 && currentLine.userState() == -1) {
-        //openingsClosings->addOpening();
-        //openingsClosings->addClosing();
         currentLine.setUserState(0);
+        currentLine.next().setUserState(0);
+
+        QString tab = "\t";
+        int tabsNumber = 0;
+        int tabsCounter = currentLine.text().indexOf(tab);
+
+        while(tabsCounter >= 0)
+        {
+            tabsNumber++;
+            tabsCounter = currentLine.text().indexOf(tab, tabsCounter + tab.length());
+        }
+
+        QString tabs;
+        int i = 0;
+        while(i < tabsNumber)
+        {
+            tabs.append("\t");
+            i++;
+        }
+
         ui->textEdit->textCursor().insertText("\n\n");
+        ui->textEdit->textCursor().insertText(tabs);
         ui->textEdit->textCursor().insertText("</div>");
         ui->textEdit->moveCursor(QTextCursor::Up);
+        //ui->textEdit->textCursor().insertText(tabs);
         ui->textEdit->textCursor().insertText("\t");
+
         currentLine.setUserState(-1);
     }
 }
