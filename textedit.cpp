@@ -8,8 +8,6 @@
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
-#include <textblockuserdata.h>
-#include <textblock.h>
 
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
@@ -68,7 +66,7 @@ void TextEdit::on_textEdit_cursorPositionChanged()
     QTextEdit::ExtraSelection lineHighlight;
     lineHighlight.cursor = ui->textEdit->textCursor();
     lineHighlight.format.setProperty(QTextFormat::FullWidthSelection, true);
-    lineHighlight.format.setBackground(Qt::gray);
+    lineHighlight.format.setBackground(Qt::Dense7Pattern);
 
     QList<QTextEdit::ExtraSelection> extras;
     extras << lineHighlight;
