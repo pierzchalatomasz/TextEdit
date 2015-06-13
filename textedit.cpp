@@ -131,7 +131,7 @@ void TextEdit::on_textEdit_textChanged()
 
     currentLine.text();
 
-    QRegExp expression("<div>");
+    QRegExp expression("<div.*>");
     int index = currentLine.text().indexOf(expression);
 
     QTextBlockUserData *openingsClosings = currentLine.userData();
