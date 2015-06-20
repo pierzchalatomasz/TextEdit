@@ -180,6 +180,7 @@ color: #ccc;</string>
      <string>Ustawienia</string>
     </property>
     <addaction name="actionMenuFont"/>
+    <addaction name="actionMenuSyntaxHighlighting"/>
    </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
@@ -234,6 +235,17 @@ color: #ccc;</string>
   <action name="actionMenuSelectAll">
    <property name="text">
     <string>Zaznacz wszystko</string>
+   </property>
+  </action>
+  <action name="actionMenuSyntaxHighlighting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Koloruj składnię</string>
    </property>
   </action>
  </widget>

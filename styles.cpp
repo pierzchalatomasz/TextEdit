@@ -1,5 +1,6 @@
 #include "styles.h"
 #include <QApplication>
+#include "QMenuBar"
 
 Styles::Styles()
 {

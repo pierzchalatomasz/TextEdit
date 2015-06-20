@@ -209,10 +209,32 @@ void TextEdit::on_textEdit_textChanged()
     }
 }
 
+// Wybór czcionki
 void TextEdit::on_actionMenuFont_triggered(){
     bool font;
-    QFont selectedFont = QFontDialog::getFont(&font);
+    QFont currentFont = ui->textEdit->currentFont();
+    QFont selectedFont = QFontDialog::getFont(&font,currentFont,0,"Wybór czcionki");
     if(!font)
         return;
-    ui->textEdit->setFont(selectedFont);
+    else
+        ui->textEdit->setFont(selectedFont);
+}
+
+// Włączenie i wyłączenie kolorowania składni
+void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
+    static int mode = 1; // kolorowanie wł = 1, wył = -1
+    mode = -mode;
+
+    if(mode == -1){
+        foreach(QSyntaxHighlighter* highlighter,
+                ui->textEdit->findChildren<QSyntaxHighlighter*>()) {
+            delete highlighter;
+        }
+
+        QColor defaultcolor;
+        defaultcolor.setRgb(60, 60, 60);
+        ui->textEdit->setTextColor(defaultcolor);
+    }
+    else
+        syntaxHighlighter();
 }
