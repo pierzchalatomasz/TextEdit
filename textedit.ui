@@ -166,10 +166,14 @@ color: #ccc;</string>
     <property name="title">
      <string>Edycja</string>
     </property>
+    <addaction name="actionMenuUndo"/>
+    <addaction name="actionMenuRedo"/>
+    <addaction name="separator"/>
     <addaction name="actionCut"/>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
     <addaction name="separator"/>
+    <addaction name="actionMenuSelectAll"/>
    </widget>
    <widget class="QMenu" name="menuUstawienia">
     <property name="title">
@@ -215,6 +219,21 @@ color: #ccc;</string>
   <action name="actionMenuFont">
    <property name="text">
     <string>Czcionka</string>
+   </property>
+  </action>
+  <action name="actionMenuUndo">
+   <property name="text">
+    <string>Cofnij</string>
+   </property>
+  </action>
+  <action name="actionMenuRedo">
+   <property name="text">
+    <string>Ponów</string>
+   </property>
+  </action>
+  <action name="actionMenuSelectAll">
+   <property name="text">
+    <string>Zaznacz wszystko</string>
    </property>
   </action>
  </widget>

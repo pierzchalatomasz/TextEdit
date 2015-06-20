@@ -19,15 +19,18 @@ private slots:
     void on_actionOpenFile_triggered();
 
     void on_textEdit_cursorPositionChanged();
-
-    void on_actionNewFile_triggered();
-
-    void on_actionCopy_triggered();
     void on_textEdit_textChanged();
-    void on_actionCut_triggered();
-    void on_actionPaste_triggered();
 
+   // funkcje dla przycisków z menu
+    void on_actionNewFile_triggered();
+    void on_actionMenuCopy_triggered();
+    void on_actionMenuCut_triggered();
+    void on_actionMenuPaste_triggered();
     void on_actionMenuFont_triggered();
+    void on_actionMenuUndo_triggered();
+    void on_actionMenuRedo_triggered();
+
+    void on_actionMenuSelectAll_triggered();
 
 private:
     Ui::TextEdit *ui;
