@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
+#include <QFontDialog>
 
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
@@ -169,4 +170,14 @@ void TextEdit::on_textEdit_textChanged()
 
         currentLine.setUserState(1);
     }
+}
+
+void TextEdit::on_actionMenuFont_triggered(){
+
+    bool font;
+    QFontDialog::NoButtons;
+    QFont selectedFont = QFontDialog::getFont(&font);
+    if(!font)
+        return;
+    ui->textEdit->setFont(selectedFont);
 }

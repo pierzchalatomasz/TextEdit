@@ -171,9 +171,16 @@ color: #ccc;</string>
     <addaction name="actionPaste"/>
     <addaction name="separator"/>
    </widget>
+   <widget class="QMenu" name="menuUstawienia">
+    <property name="title">
+     <string>Ustawienia</string>
+    </property>
+    <addaction name="actionMenuFont"/>
+   </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
    <addaction name="menuEdycja"/>
+   <addaction name="menuUstawienia"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -203,6 +210,11 @@ color: #ccc;</string>
   <action name="actionPaste">
    <property name="text">
     <string>Wklej</string>
+   </property>
+  </action>
+  <action name="actionMenuFont">
+   <property name="text">
+    <string>Czcionka</string>
    </property>
   </action>
  </widget>
