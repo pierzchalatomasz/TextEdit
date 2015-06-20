@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
+#include <QFontDialog>
 
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
@@ -111,19 +112,34 @@ void TextEdit::on_actionNewFile_triggered()
 }
 
 //Obsługa poleceń z menu edycja
-void TextEdit::on_actionPaste_triggered(){
+void TextEdit::on_actionMenuPaste_triggered(){
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier));
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_V, Qt::ControlModifier));
 }
 
-void TextEdit::on_actionCopy_triggered(){
+void TextEdit::on_actionMenuCopy_triggered(){
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_C, Qt::ControlModifier));
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_C, Qt::ControlModifier));
 }
 
-void TextEdit::on_actionCut_triggered(){
+void TextEdit::on_actionMenuCut_triggered(){
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_X, Qt::ControlModifier));
     QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_X, Qt::ControlModifier));
+}
+
+void TextEdit::on_actionMenuUndo_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Z, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_Z, Qt::ControlModifier));
+}
+
+void TextEdit::on_actionMenuRedo_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Y, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_Y, Qt::ControlModifier));
+}
+
+void TextEdit::on_actionMenuSelectAll_triggered(){
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_A, Qt::ControlModifier));
+    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_A, Qt::ControlModifier));
 }
 
 // Zamykanie znaczników
@@ -169,4 +185,12 @@ void TextEdit::on_textEdit_textChanged()
 
         currentLine.setUserState(1);
     }
+}
+
+void TextEdit::on_actionMenuFont_triggered(){
+    bool font;
+    QFont selectedFont = QFontDialog::getFont(&font);
+    if(!font)
+        return;
+    ui->textEdit->setFont(selectedFont);
 }
