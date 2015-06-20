@@ -29,8 +29,8 @@ private slots:
     void on_actionMenuFont_triggered();
     void on_actionMenuUndo_triggered();
     void on_actionMenuRedo_triggered();
-
     void on_actionMenuSelectAll_triggered();
+    void on_actionMenuSyntaxHighlighting_triggered();
 
 private:
     Ui::TextEdit *ui;
