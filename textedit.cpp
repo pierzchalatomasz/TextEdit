@@ -173,9 +173,7 @@ void TextEdit::on_textEdit_textChanged()
 }
 
 void TextEdit::on_actionMenuFont_triggered(){
-
     bool font;
-    QFontDialog::NoButtons;
     QFont selectedFont = QFontDialog::getFont(&font);
     if(!font)
         return;
