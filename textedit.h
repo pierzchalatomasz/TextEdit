@@ -35,6 +35,7 @@ private slots:
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );
+    void checkFileType( QString fileName );
     void syntaxHighlighter();
 };
 

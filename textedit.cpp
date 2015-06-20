@@ -10,6 +10,7 @@
 #include "styles.h"
 #include <QFontDialog>
 
+int fileType;
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TextEdit)
@@ -33,6 +34,7 @@ TextEdit::~TextEdit()
 // Ładuje plik
 void TextEdit::loadFile(QString fileName)
 {
+    if(fileType==1){
     QFile file(fileName);
     file.open(QIODevice::ReadWrite);
 
@@ -49,6 +51,10 @@ void TextEdit::loadFile(QString fileName)
         loadFileErrorDialog.show();
         ui->textEdit->setPlainText("Niestety, nie udało się otworzyć pliku!");
     }
+    }
+    if(fileType==2){
+
+    }
 }
 
 // Aktywuje kolorowanie składni
@@ -57,10 +63,26 @@ void TextEdit::syntaxHighlighter()
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
 }
 
+
+//otwarcie pliku
 void TextEdit::on_actionOpenFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName();
+
+    ui->tabWidget->addTab(new QTextEdit, fileName);
+
+    checkFileType(fileName);
     loadFile(fileName);
+}
+//sprawdzenie typu pliku
+void TextEdit::checkFileType(QString fileName)
+{
+    if(fileName.endsWith("html")||fileName.endsWith("htm")){
+        fileType=1;
+    }
+    else if(fileName.endsWith("css")){
+        fileType=2;
+    }
 }
 
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
@@ -103,7 +125,7 @@ void TextEdit::on_textEdit_cursorPositionChanged()
     }
 }
 
-// Otwieranie nowego pliku
+// stworzenie nowego pliku
 void TextEdit::on_actionNewFile_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName();
