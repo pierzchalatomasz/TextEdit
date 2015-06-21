@@ -31,6 +31,8 @@ private slots:
     void on_actionMenuRedo_triggered();
     void on_actionMenuSelectAll_triggered();
     void on_actionMenuSyntaxHighlighting_triggered();
+    void on_actionMenuZoomOut_triggered();
+    void on_actionMenuZoomIn_triggered();
 
 private:
     Ui::TextEdit *ui;
@@ -38,6 +40,7 @@ private:
     void loadFile( QString fileName );
     void checkFileType( QString fileName );
     void syntaxHighlighter();
+    void setConnections();
 };
 
 #endif // TEXTEDIT_H

@@ -9,6 +9,7 @@
 #include <QBrush>
 #include "styles.h"
 #include <QFontDialog>
+#include <QShortcut>
 
 int fileType;
 TextEdit::TextEdit(QWidget *parent) :
@@ -18,6 +19,7 @@ TextEdit::TextEdit(QWidget *parent) :
     ui->setupUi(this);
     loadFile("test.html");
     syntaxHighlighter();
+    setConnections();
 
     TextEdit::setWindowIcon(QIcon(":/icons/icons/pencil.png"));
 
@@ -249,4 +251,27 @@ void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
     }
     else
         syntaxHighlighter();
+}
+
+// Obsługa zoom (menu)
+void TextEdit::on_actionMenuZoomIn_triggered()
+{
+    ui->textEdit->zoomIn(2);
+}
+
+void TextEdit::on_actionMenuZoomOut_triggered()
+{
+    ui->textEdit->zoomOut(2);
+}
+
+// Aktywuje potrzebne połączenia sygnał -> slot
+void TextEdit::setConnections(){
+    QShortcut *shortcutZoomIn = new QShortcut(QKeySequence("Ctrl++"),this);
+    connect(shortcutZoomIn,SIGNAL(activated()),ui->actionMenuZoomIn,SLOT(trigger()));
+    QShortcut *shortcutZoomOut = new QShortcut(QKeySequence("Ctrl+-"),this);
+    connect(shortcutZoomOut,SIGNAL(activated()),ui->actionMenuZoomOut,SLOT(trigger()));
+    QShortcut *shortcutNewFile = new QShortcut(QKeySequence("Ctrl+N"),this);
+    connect(shortcutNewFile,SIGNAL(activated()),ui->actionNewFile,SLOT(trigger()));
+    QShortcut *shortcutOpenFile = new QShortcut(QKeySequence("Ctrl+O"),this);
+    connect(shortcutOpenFile,SIGNAL(activated()),ui->actionOpenFile,SLOT(trigger()));
 }
