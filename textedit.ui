@@ -181,6 +181,8 @@ color: #ccc;</string>
     </property>
     <addaction name="actionMenuFont"/>
     <addaction name="actionMenuSyntaxHighlighting"/>
+    <addaction name="actionMenuZoomIn"/>
+    <addaction name="actionMenuZoomOut"/>
    </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
@@ -246,6 +248,16 @@ color: #ccc;</string>
    </property>
    <property name="text">
     <string>Koloruj składnię</string>
+   </property>
+  </action>
+  <action name="actionMenuZoomIn">
+   <property name="text">
+    <string>Powiększ</string>
+   </property>
+  </action>
+  <action name="actionMenuZoomOut">
+   <property name="text">
+    <string>Pomniejsz</string>
    </property>
   </action>
  </widget>
