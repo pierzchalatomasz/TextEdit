@@ -62,14 +62,26 @@ void TextEdit::syntaxHighlighter()
 {
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
 }
+//skraca nazwe pliku
+QString TextEdit::cutFileName(QString fileName){
+    QString shortFileName;
+    int lastIndex;
 
+
+    lastIndex=fileName.lastIndexOf(QRegExp("/"));
+
+    for(int i=lastIndex+1; i<fileName.length(); i++){
+        shortFileName=shortFileName+fileName[i];
+    }
+    return shortFileName;
+}
 
 //otwarcie pliku
 void TextEdit::on_actionOpenFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName();
-
-    ui->tabWidget->addTab(new QTextEdit, fileName);
+    QString shortFileName=cutFileName(fileName);
+    ui->tabWidget->addTab(new QTextEdit, shortFileName);
 
     checkFileType(fileName);
     loadFile(fileName);
