@@ -275,3 +275,33 @@ void TextEdit::setConnections(){
     QShortcut *shortcutOpenFile = new QShortcut(QKeySequence("Ctrl+O"),this);
     connect(shortcutOpenFile,SIGNAL(activated()),ui->actionOpenFile,SLOT(trigger()));
 }
+
+//zapisanie pliku
+/*int save( const QString & input, const QString & s  )
+ {
+  FILE *fp;
+  QString file = input;
+  if ( (fp=fopen(s, "w")) != NULL ) {
+     fputs(file, fp);
+     fclose(fp);
+     } else {
+     QMessageBox sch ( "ERROR", "Blad otwarcia pliku.",
+           QMessageBox::Warning,
+           QMessageBox::Ok, 0, 0 );
+     sch.exec();
+     }
+ return 0;
+ }*/
+
+//zapisywanie pliku jako..
+void TextEdit::on_actionZapisz_triggered()
+{
+
+    QString str = ui->textEdit->toPlainText();
+    QString fileName = QFileDialog::getSaveFileName();
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly|QIODevice::Text);
+    QTextStream out(&file);
+    out<<str<<endl;
+    file.close();
+}

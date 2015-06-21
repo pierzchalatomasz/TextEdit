@@ -33,7 +33,7 @@ private slots:
     void on_actionMenuSyntaxHighlighting_triggered();
     void on_actionMenuZoomOut_triggered();
     void on_actionMenuZoomIn_triggered();
-
+    void on_actionZapisz_triggered();
 private:
     Ui::TextEdit *ui;
     QString cutFileName(QString fileName);
