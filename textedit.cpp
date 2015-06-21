@@ -1,4 +1,4 @@
-#include "textedit.h"
+﻿#include "textedit.h"
 #include "ui_textedit.h"
 #include <QFile>
 #include <QTextStream>
@@ -64,7 +64,7 @@ void TextEdit::syntaxHighlighter()
 {
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
 }
-//skraca nazwe pliku
+//skraca nazwe pliku w kartach
 QString TextEdit::cutFileName(QString fileName){
     QString shortFileName;
     int lastIndex;
