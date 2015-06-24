@@ -111,7 +111,7 @@ color: #ccc;</string>
              <x>0</x>
              <y>0</y>
              <width>30</width>
-             <height>352</height>
+             <height>313</height>
             </rect>
            </property>
           </widget>
@@ -132,7 +132,7 @@ color: #ccc;</string>
      <x>0</x>
      <y>0</y>
      <width>680</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -166,14 +166,28 @@ color: #ccc;</string>
     <property name="title">
      <string>Edycja</string>
     </property>
+    <addaction name="actionMenuUndo"/>
+    <addaction name="actionMenuRedo"/>
+    <addaction name="separator"/>
     <addaction name="actionCut"/>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
     <addaction name="separator"/>
+    <addaction name="actionMenuSelectAll"/>
+   </widget>
+   <widget class="QMenu" name="menuUstawienia">
+    <property name="title">
+     <string>Ustawienia</string>
+    </property>
+    <addaction name="actionMenuFont"/>
+    <addaction name="actionMenuSyntaxHighlighting"/>
+    <addaction name="actionMenuZoomIn"/>
+    <addaction name="actionMenuZoomOut"/>
    </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
    <addaction name="menuEdycja"/>
+   <addaction name="menuUstawienia"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -203,6 +217,47 @@ color: #ccc;</string>
   <action name="actionPaste">
    <property name="text">
     <string>Wklej</string>
+   </property>
+  </action>
+  <action name="actionMenuFont">
+   <property name="text">
+    <string>Czcionka</string>
+   </property>
+  </action>
+  <action name="actionMenuUndo">
+   <property name="text">
+    <string>Cofnij</string>
+   </property>
+  </action>
+  <action name="actionMenuRedo">
+   <property name="text">
+    <string>Ponów</string>
+   </property>
+  </action>
+  <action name="actionMenuSelectAll">
+   <property name="text">
+    <string>Zaznacz wszystko</string>
+   </property>
+  </action>
+  <action name="actionMenuSyntaxHighlighting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Koloruj składnię</string>
+   </property>
+  </action>
+  <action name="actionMenuZoomIn">
+   <property name="text">
+    <string>Powiększ</string>
+   </property>
+  </action>
+  <action name="actionMenuZoomOut">
+   <property name="text">
+    <string>Pomniejsz</string>
    </property>
   </action>
  </widget>
