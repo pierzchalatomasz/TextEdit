@@ -11,6 +11,7 @@
 #include <file.h>
 #include <QFontDialog>
 #include <QShortcut>
+#include <textformatter.h>
 
 int fileType;
 TextEdit::TextEdit(QWidget *parent) :
@@ -130,41 +131,11 @@ void TextEdit::checkFileType(QString fileName)
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
 void TextEdit::on_textEdit_cursorPositionChanged()
 {
-    QTextEdit::ExtraSelection lineHighlight;
-    lineHighlight.cursor = ui->textEdit->textCursor();
-    lineHighlight.format.setProperty(QTextFormat::FullWidthSelection, true);
-    QColor color;
-    color.setRgb(60, 60, 60);
-    QBrush brush(color);
-    lineHighlight.format.setBackground(brush);
-
-    QList<QTextEdit::ExtraSelection> extras;
-    extras << lineHighlight;
-    ui->textEdit->setExtraSelections( extras );
+    //TextFormatter *textFormatter = new TextFormatter();
+    textFormatter.lineHighlighter(ui->textEdit);
 
     // Dodawanie tabów wewnątrz elementu
-    QTextBlock currentLine = ui->textEdit->textCursor().block();
-    if(currentLine.text().isEmpty() && currentLine.userState() == -1)
-    {
-        QString tab = "\t";
-        int tabsNumber = 0;
-        int tabsCounter = currentLine.previous().text().indexOf(tab);
-
-        while(tabsCounter >= 0)
-        {
-            tabsNumber++;
-            tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
-        }
-
-        QString tabs;
-        int i = 0;
-        while(i < tabsNumber)
-        {
-            tabs.append("\t");
-            i++;
-        }
-        ui->textEdit->textCursor().insertText(tabs);
-    }
+    textFormatter.tabsInsideElements(ui->textEdit);
 }
 
 // stworzenie nowego pliku
@@ -210,46 +181,7 @@ void TextEdit::on_actionMenuSelectAll_triggered(){
 // Zamykanie znaczników
 void TextEdit::on_textEdit_textChanged()
 {
-    QTextBlock currentLine = ui->textEdit->textCursor().block();
-
-    currentLine.text();
-
-    QRegExp expression("<div.*>");
-    int index = currentLine.text().indexOf(expression);
-
-    QTextBlockUserData *openingsClosings = currentLine.userData();
-
-    if (index >= 0 && currentLine.userState() == -1) {
-        currentLine.setUserState(0);
-        currentLine.next().setUserState(0);
-
-        QString tab = "\t";
-        int tabsNumber = 0;
-        int tabsCounter = currentLine.text().indexOf(tab);
-
-        while(tabsCounter >= 0)
-        {
-            tabsNumber++;
-            tabsCounter = currentLine.text().indexOf(tab, tabsCounter + tab.length());
-        }
-
-        QString tabs;
-        int i = 0;
-        while(i < tabsNumber)
-        {
-            tabs.append("\t");
-            i++;
-        }
-
-        ui->textEdit->textCursor().insertText("\n\n");
-        ui->textEdit->textCursor().insertText(tabs);
-        ui->textEdit->textCursor().insertText("</div>");
-        ui->textEdit->moveCursor(QTextCursor::Up);
-        //ui->textEdit->textCursor().insertText(tabs);
-        ui->textEdit->textCursor().insertText("\t");
-
-        currentLine.setUserState(1);
-    }
+    textFormatter.elementsClosing(ui->textEdit);
 }
 
 // Wybór czcionki

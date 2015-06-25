@@ -2,6 +2,7 @@
 #define TEXTEDIT_H
 
 #include <QMainWindow>
+#include <textformatter.h>
 
 namespace Ui {
 class TextEdit;
@@ -42,6 +43,8 @@ private:
     void syntaxHighlighter();
     void setConnections();
     void newTab(QString fileName);
+
+    TextFormatter textFormatter;
 };
 
 #endif // TEXTEDIT_H

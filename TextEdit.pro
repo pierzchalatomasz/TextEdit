@@ -16,14 +16,16 @@ SOURCES += main.cpp\
         textedit.cpp \
     syntaxhighlighter.cpp \
     styles.cpp \
-    file.cpp
+    file.cpp \
+    textformatter.cpp
 
 HEADERS  += textedit.h \
     syntaxhighlighter.h \
     styles.h \
     textblockuserdata.h \
     textblock.h \
-    file.h
+    file.h \
+    textformatter.h
 
 FORMS    += textedit.ui
 

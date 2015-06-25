@@ -1,6 +1,7 @@
 #ifndef SYNTAXHIGHLIGHTER_H
 #define SYNTAXHIGHLIGHTER_H
 #include <QSyntaxHighlighter>
+#include <QTextEdit>
 #include "textedit.h"
 
 class SyntaxHighlighter: public QSyntaxHighlighter
