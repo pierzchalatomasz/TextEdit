@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
+#include <file.h>
 #include <QFontDialog>
 #include <QShortcut>
 
@@ -17,7 +18,7 @@ TextEdit::TextEdit(QWidget *parent) :
     ui(new Ui::TextEdit)
 {
     ui->setupUi(this);
-    loadFile("test.html");
+    //loadFile("test.html");
     syntaxHighlighter();
     setConnections();
 
@@ -107,10 +108,14 @@ void TextEdit::on_actionOpenFile_triggered()
     QList<QTextEdit *> allTextEdits = ui->tabWidget->widget(tabIndex - 1)->findChildren<QTextEdit *>();
     QTextEdit *currentTextEdit = allTextEdits[0];
     QString testowyString = "Nazwa pliku otwartego w tej karcie: " + fileName;
-    currentTextEdit->setPlainText(testowyString);
+
+    File file(fileName);
+
+    currentTextEdit->setPlainText(file.getFileContent());
     // Przenieś na kartę z otwieranym plikiem
     ui->tabWidget->setCurrentIndex(tabIndex - 1);
-    //loadFile(fileName);
+
+    //loadFile(fileName, ui->tabWidget->widget(tabIndex - 1));
 }
 //sprawdzenie typu pliku
 void TextEdit::checkFileType(QString fileName)
@@ -167,7 +172,7 @@ void TextEdit::on_textEdit_cursorPositionChanged()
 void TextEdit::on_actionNewFile_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName();
-    loadFile(fileName);
+    //loadFile(fileName);
 
     newTab(fileName);
 }
