@@ -107,7 +107,6 @@ void TextEdit::on_actionOpenFile_triggered()
     int tabIndex = ui->tabWidget->count();
     QList<QTextEdit *> allTextEdits = ui->tabWidget->widget(tabIndex - 1)->findChildren<QTextEdit *>();
     QTextEdit *currentTextEdit = allTextEdits[0];
-    QString testowyString = "Nazwa pliku otwartego w tej karcie: " + fileName;
 
     File file(fileName);
 
