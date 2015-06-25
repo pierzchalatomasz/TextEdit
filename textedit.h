@@ -41,6 +41,7 @@ private:
     void checkFileType( QString fileName );
     void syntaxHighlighter();
     void setConnections();
+    void newTab(QString fileName);
 };
 
 #endif // TEXTEDIT_H

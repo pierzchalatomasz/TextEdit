@@ -33,6 +33,19 @@ TextEdit::~TextEdit()
     delete ui;
 }
 
+void TextEdit::newTab(QString fileName)
+{
+    QTextEdit* textEdit = new QTextEdit();
+
+    QVBoxLayout *vl = new QVBoxLayout;
+    vl->addWidget(textEdit);
+
+    QWidget *newTab = new QWidget;
+    newTab->setLayout(vl);
+
+    ui->tabWidget->addTab(newTab, fileName);
+}
+
 // Ładuje plik
 void TextEdit::loadFile(QString fileName)
 {
@@ -45,7 +58,8 @@ void TextEdit::loadFile(QString fileName)
         QTextStream fileStream(&file);
         QString fileString = fileStream.readAll();
 
-        ui->textEdit->setPlainText(fileString);
+        Ui::TextEdit* newUi = new Ui::TextEdit;
+        newUi->textEdit->setPlainText(fileString);
     }
     else
     {
@@ -83,10 +97,20 @@ void TextEdit::on_actionOpenFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName();
     QString shortFileName=cutFileName(fileName);
-    ui->tabWidget->addTab(new QTextEdit, shortFileName);
+    //ui->tabWidget->addTab(new QTextEdit, shortFileName);
+
+    newTab(shortFileName);
 
     checkFileType(fileName);
-    loadFile(fileName);
+
+    int tabIndex = ui->tabWidget->count();
+    QList<QTextEdit *> allTextEdits = ui->tabWidget->widget(tabIndex - 1)->findChildren<QTextEdit *>();
+    QTextEdit *currentTextEdit = allTextEdits[0];
+    QString testowyString = "Nazwa pliku otwartego w tej karcie: " + fileName;
+    currentTextEdit->setPlainText(testowyString);
+    // Przenieś na kartę z otwieranym plikiem
+    ui->tabWidget->setCurrentIndex(tabIndex - 1);
+    //loadFile(fileName);
 }
 //sprawdzenie typu pliku
 void TextEdit::checkFileType(QString fileName)
@@ -144,7 +168,8 @@ void TextEdit::on_actionNewFile_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName();
     loadFile(fileName);
-    ui->tabWidget->addTab(new QTextEdit, fileName);
+
+    newTab(fileName);
 }
 
 //Obsługa poleceń z menu edycja
