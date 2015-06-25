@@ -7,6 +7,17 @@ File::File(QString fileName) : file(fileName)
     file.open(QIODevice::ReadWrite);
 }
 
+void File::openInCard(QTabWidget *&tabWidget)
+{
+    int tabIndex = tabWidget->count();
+    QList<QTextEdit *> allTextEdits = tabWidget->widget(tabIndex - 1)->findChildren<QTextEdit *>();
+    QTextEdit *currentTextEdit = allTextEdits[0];
+
+    currentTextEdit->setPlainText(this->getFileContent());
+    // Przenieś na kartę z otwieranym plikiem
+    tabWidget->setCurrentIndex(tabIndex - 1);
+}
+
 QString File::getFileContent()
 {
     if( !file.error() && file.exists() )

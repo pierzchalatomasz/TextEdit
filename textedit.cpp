@@ -19,7 +19,8 @@ TextEdit::TextEdit(QWidget *parent) :
     ui(new Ui::TextEdit)
 {
     ui->setupUi(this);
-    //loadFile("test.html");
+    File file("test.html");
+    file.openInCard(ui->tabWidget);
     syntaxHighlighter();
     setConnections();
 
@@ -80,6 +81,7 @@ void TextEdit::syntaxHighlighter()
 {
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
 }
+
 //skraca nazwe pliku w kartach
 QString TextEdit::cutFileName(QString fileName){
     QString shortFileName;
@@ -99,24 +101,15 @@ void TextEdit::on_actionOpenFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName();
     QString shortFileName=cutFileName(fileName);
-    //ui->tabWidget->addTab(new QTextEdit, shortFileName);
 
     newTab(shortFileName);
 
     checkFileType(fileName);
 
-    int tabIndex = ui->tabWidget->count();
-    QList<QTextEdit *> allTextEdits = ui->tabWidget->widget(tabIndex - 1)->findChildren<QTextEdit *>();
-    QTextEdit *currentTextEdit = allTextEdits[0];
-
     File file(fileName);
-
-    currentTextEdit->setPlainText(file.getFileContent());
-    // Przenieś na kartę z otwieranym plikiem
-    ui->tabWidget->setCurrentIndex(tabIndex - 1);
-
-    //loadFile(fileName, ui->tabWidget->widget(tabIndex - 1));
+    file.openInCard(ui->tabWidget);
 }
+
 //sprawdzenie typu pliku
 void TextEdit::checkFileType(QString fileName)
 {
