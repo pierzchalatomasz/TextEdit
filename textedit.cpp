@@ -98,6 +98,7 @@ void TextEdit::on_actionOpenFile_triggered()
     file.openInCard(ui->tabWidget);
 
     syntaxHighlighter();
+    textFormatter.lineHighlighter(tabController.currentTextEdit());
 }
 
 //sprawdzenie typu pliku

@@ -1,12 +1,10 @@
 #include "textformatter.h"
 
 TextFormatter::TextFormatter()
-{
-
-}
+{}
 
 // Podświetlanie aktualnej linii
-void TextFormatter::lineHighlighter(QTextEdit *&textEdit)
+void TextFormatter::lineHighlighter(QTextEdit *textEdit)
 {
     QTextEdit::ExtraSelection lineHighlight;
     lineHighlight.cursor = textEdit->textCursor();
