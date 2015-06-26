@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <textformatter.h>
+#include <tabcontroller.h>
 
 namespace Ui {
 class TextEdit;
@@ -45,6 +46,7 @@ private:
     void newTab(QString fileName);
 
     TextFormatter textFormatter;
+    TabController tabController;
 };
 
 #endif // TEXTEDIT_H

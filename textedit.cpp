@@ -19,6 +19,8 @@ TextEdit::TextEdit(QWidget *parent) :
     ui(new Ui::TextEdit)
 {
     ui->setupUi(this);
+    tabController.init(ui->tabWidget);
+
     File file("test.html");
     file.openInCard(ui->tabWidget);
     syntaxHighlighter();
@@ -34,19 +36,6 @@ TextEdit::TextEdit(QWidget *parent) :
 TextEdit::~TextEdit()
 {
     delete ui;
-}
-
-void TextEdit::newTab(QString fileName)
-{
-    QTextEdit* textEdit = new QTextEdit();
-
-    QVBoxLayout *vl = new QVBoxLayout;
-    vl->addWidget(textEdit);
-
-    QWidget *newTab = new QWidget;
-    newTab->setLayout(vl);
-
-    ui->tabWidget->addTab(newTab, fileName);
 }
 
 // Ładuje plik
@@ -79,7 +68,7 @@ void TextEdit::loadFile(QString fileName)
 // Aktywuje kolorowanie składni
 void TextEdit::syntaxHighlighter()
 {
-    SyntaxHighlighter* highlighter = new SyntaxHighlighter(ui->textEdit->document());
+    SyntaxHighlighter* highlighter = new SyntaxHighlighter(tabController.currentTextEdit()->document());
 }
 
 //skraca nazwe pliku w kartach
@@ -102,12 +91,13 @@ void TextEdit::on_actionOpenFile_triggered()
     QString fileName = QFileDialog::getOpenFileName();
     QString shortFileName=cutFileName(fileName);
 
-    newTab(shortFileName);
-
     checkFileType(fileName);
 
     File file(fileName);
+    tabController.newTab(shortFileName);
     file.openInCard(ui->tabWidget);
+
+    syntaxHighlighter();
 }
 
 //sprawdzenie typu pliku
@@ -124,7 +114,6 @@ void TextEdit::checkFileType(QString fileName)
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
 void TextEdit::on_textEdit_cursorPositionChanged()
 {
-    //TextFormatter *textFormatter = new TextFormatter();
     textFormatter.lineHighlighter(ui->textEdit);
 
     // Dodawanie tabów wewnątrz elementu
@@ -135,9 +124,9 @@ void TextEdit::on_textEdit_cursorPositionChanged()
 void TextEdit::on_actionNewFile_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName();
-    //loadFile(fileName);
-
-    newTab(fileName);
+    tabController.newTab(fileName);
+    File file(fileName);
+    file.openInCard(ui->tabWidget);
 }
 
 //Obsługa poleceń z menu edycja
