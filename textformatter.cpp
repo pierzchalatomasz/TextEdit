@@ -1,7 +1,9 @@
 #include "textformatter.h"
 
 TextFormatter::TextFormatter()
-{}
+{
+    htmlTags << "a" << "abbr" << "address" << "div" << "section";
+}
 
 // Podświetlanie aktualnej linii
 void TextFormatter::lineHighlighter(QTextEdit *textEdit)
@@ -49,42 +51,46 @@ void TextFormatter::tabsInsideElements(QTextEdit *textEdit)
 // Zamykanie elementów
 void TextFormatter::elementsClosing(QTextEdit *textEdit)
 {
-    QTextBlock currentLine = textEdit->textCursor().block();
-
-    currentLine.text();
-
-    QRegExp expression("<div.*>");
-    int index = currentLine.text().indexOf(expression);
-
-    if (index >= 0 && currentLine.userState() == -1)
+    for(int i = 0; i < htmlTags.length(); i++)
     {
-        currentLine.setUserState(0);
-        currentLine.next().setUserState(0);
+        QTextBlock currentLine = textEdit->textCursor().block();
 
-        QString tab = "\t";
-        int tabsNumber = 0;
-        int tabsCounter = currentLine.text().indexOf(tab);
+        //currentLine.text();
+        QString regExp = "<" + htmlTags.at(i) + ".*>";
+        QString closing = "</" + htmlTags.at(i) + ">";
+        QRegExp expression(regExp);
+        int index = currentLine.text().indexOf(expression);
 
-        while(tabsCounter >= 0)
+        if (index >= 0 && currentLine.userState() == -1)
         {
-            tabsNumber++;
-            tabsCounter = currentLine.text().indexOf(tab, tabsCounter + tab.length());
+            currentLine.setUserState(0);
+            currentLine.next().setUserState(0);
+
+            QString tab = "\t";
+            int tabsNumber = 0;
+            int tabsCounter = currentLine.text().indexOf(tab);
+
+            while(tabsCounter >= 0)
+            {
+                tabsNumber++;
+                tabsCounter = currentLine.text().indexOf(tab, tabsCounter + tab.length());
+            }
+
+            QString tabs;
+            int i = 0;
+            while(i < tabsNumber)
+            {
+                tabs.append("\t");
+                i++;
+            }
+
+            textEdit->textCursor().insertText("\n\n");
+            textEdit->textCursor().insertText(tabs);
+            textEdit->textCursor().insertText(closing);
+            textEdit->moveCursor(QTextCursor::Up);
+            textEdit->textCursor().insertText("\t");
+
+            currentLine.setUserState(1);
         }
-
-        QString tabs;
-        int i = 0;
-        while(i < tabsNumber)
-        {
-            tabs.append("\t");
-            i++;
-        }
-
-        textEdit->textCursor().insertText("\n\n");
-        textEdit->textCursor().insertText(tabs);
-        textEdit->textCursor().insertText("</div>");
-        textEdit->moveCursor(QTextCursor::Up);
-        textEdit->textCursor().insertText("\t");
-
-        currentLine.setUserState(1);
     }
 }
