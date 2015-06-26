@@ -20,7 +20,7 @@ void TextFormatter::lineHighlighter(QTextEdit *textEdit)
 }
 
 // Taby wewnątrz elementów
-void TextFormatter::tabsInsideElements(QTextEdit *&textEdit)
+void TextFormatter::tabsInsideElements(QTextEdit *textEdit)
 {
     QTextBlock currentLine = textEdit->textCursor().block();
     if(currentLine.text().isEmpty() && currentLine.userState() == -1)
@@ -47,7 +47,7 @@ void TextFormatter::tabsInsideElements(QTextEdit *&textEdit)
 }
 
 // Zamykanie elementów
-void TextFormatter::elementsClosing(QTextEdit *&textEdit)
+void TextFormatter::elementsClosing(QTextEdit *textEdit)
 {
     QTextBlock currentLine = textEdit->textCursor().block();
 

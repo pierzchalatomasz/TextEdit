@@ -20,7 +20,7 @@ public:
 private slots:
     void on_actionOpenFile_triggered();
 
-    void on_textEdit_cursorPositionChanged();
+    void on_currentTextEdit_cursorPositionChanged();
     void on_textEdit_textChanged();
 
    // funkcje dla przycisków z menu

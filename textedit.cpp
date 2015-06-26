@@ -98,7 +98,9 @@ void TextEdit::on_actionOpenFile_triggered()
     file.openInCard(ui->tabWidget);
 
     syntaxHighlighter();
-    textFormatter.lineHighlighter(tabController.currentTextEdit());
+
+    connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
+
 }
 
 //sprawdzenie typu pliku
@@ -113,12 +115,13 @@ void TextEdit::checkFileType(QString fileName)
 }
 
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
-void TextEdit::on_textEdit_cursorPositionChanged()
+void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
-    textFormatter.lineHighlighter(ui->textEdit);
+    textFormatter.lineHighlighter(tabController.currentTextEdit());
 
     // Dodawanie tabów wewnątrz elementu
-    textFormatter.tabsInsideElements(ui->textEdit);
+    textFormatter.tabsInsideElements(tabController.currentTextEdit());
+    textFormatter.elementsClosing(tabController.currentTextEdit());
 }
 
 // stworzenie nowego pliku
@@ -218,6 +221,8 @@ void TextEdit::setConnections(){
     connect(shortcutNewFile,SIGNAL(activated()),ui->actionNewFile,SLOT(trigger()));
     QShortcut *shortcutOpenFile = new QShortcut(QKeySequence("Ctrl+O"),this);
     connect(shortcutOpenFile,SIGNAL(activated()),ui->actionOpenFile,SLOT(trigger()));
+
+    connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
 }
 
 //zapisanie pliku
