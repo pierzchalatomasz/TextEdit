@@ -3,6 +3,7 @@
 TabController::TabController()
 {}
 
+// Tworzy nową kartę (layout skopiowany z designera)
 void TabController::newTab(QString fileName)
 {
     QWidget *newTab = new QWidget;
@@ -21,8 +22,8 @@ void TabController::newTab(QString fileName)
     font1.setPointSize(11);
     textEdit->setFont(font1);
     textEdit->setStyleSheet(QLatin1String("border: none;\n"
-"background: #444;\n"
-"color: #ccc;"));
+    "background: #444;\n"
+    "color: #ccc;"));
     textEdit->setTabStopWidth(20);
     textEdit->setProperty("currentIndex", QVariant(0));
 
@@ -51,11 +52,13 @@ void TabController::newTab(QString fileName)
     tabWidget->addTab(newTab, fileName);
 }
 
+// tabWidget staje się referencją do ui->tabWidget
 void TabController::init(QTabWidget *&getTabWidget)
 {
     tabWidget = getTabWidget;
 }
 
+// zwraca wskaźnik do textEdit z otwartej karty
 QTextEdit *TabController::currentTextEdit()
 {
     int currentIndex = tabWidget->currentIndex();

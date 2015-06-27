@@ -2,6 +2,7 @@
 
 TextFormatter::TextFormatter()
 {
+    // Lista tagów HTML
     htmlTags << "a" << "abbr" << "address" << "div" << "section";
 }
 

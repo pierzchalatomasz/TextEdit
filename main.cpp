@@ -10,8 +10,5 @@ int main(int argc, char *argv[])
 
     w.show();
 
-
-    //mySyntaxHighLighter* highlighter = new mySyntaxHighLighter(edit->document());
-
     return a.exec();
 }

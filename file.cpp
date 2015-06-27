@@ -7,6 +7,7 @@ File::File(QString fileName) : file(fileName)
     file.open(QIODevice::ReadWrite);
 }
 
+// Otwiera plik w ostatniej karcie
 void File::openInCard(QTabWidget *&tabWidget)
 {
     int tabIndex = tabWidget->count();
@@ -18,6 +19,7 @@ void File::openInCard(QTabWidget *&tabWidget)
     tabWidget->setCurrentIndex(tabIndex - 1);
 }
 
+// Zwraca treść pliku
 QString File::getFileContent()
 {
     if( !file.error() && file.exists() )
