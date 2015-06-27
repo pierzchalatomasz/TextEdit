@@ -105,7 +105,8 @@ void TextEdit::on_actionOpenFile_triggered()
     syntaxHighlighter();
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
-
+    //connect(tabController.currentTextEdit(),SIGNAL(textChanged()),tabController.currentLineNumberArea(),SLOT(clear()));
+    //test działania currentLineNumberArea()
 }
 
 //sprawdzenie typu pliku
@@ -148,7 +149,7 @@ void TextEdit::on_textEdit_textChanged()
     textFormatter.elementsClosing(ui->textEdit);
 }
 
-//Obsługa poleceń z menu edycja
+// Opcje wywoływane z menu
 void TextEdit::on_actionMenuPaste_triggered(){
     menu.paste(tabController.currentTextEdit());
 }
@@ -173,8 +174,6 @@ void TextEdit::on_actionMenuSelectAll_triggered(){
     menu.selectAll(tabController.currentTextEdit());
 }
 
-
-// Opcje wywoływane z menu
 void TextEdit::on_actionMenuFont_triggered(){
     menu.selectFont(tabController.currentTextEdit());
 }

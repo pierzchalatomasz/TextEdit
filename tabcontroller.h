@@ -17,6 +17,7 @@ public:
     void newTab(QString fileName);
     void init(QTabWidget *&getTabWidget);
     QTextEdit *currentTextEdit();
+    QTextEdit *currentLineNumberArea();
 private:
     QTabWidget *tabWidget;
 private slots:

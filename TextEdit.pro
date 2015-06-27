@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     file.cpp \
     textformatter.cpp \
     tabcontroller.cpp \
-    menu.cpp
+    menu.cpp \
+    linenumbering.cpp
 
 HEADERS  += textedit.h \
     syntaxhighlighter.h \
@@ -29,7 +30,8 @@ HEADERS  += textedit.h \
     file.h \
     textformatter.h \
     tabcontroller.h \
-    menu.h
+    menu.h \
+    linenumbering.h
 
 FORMS    += textedit.ui
 
