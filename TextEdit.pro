@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     styles.cpp \
     file.cpp \
     textformatter.cpp \
-    tabcontroller.cpp
+    tabcontroller.cpp \
+    menu.cpp
 
 HEADERS  += textedit.h \
     syntaxhighlighter.h \
@@ -27,7 +28,8 @@ HEADERS  += textedit.h \
     textblock.h \
     file.h \
     textformatter.h \
-    tabcontroller.h
+    tabcontroller.h \
+    menu.h
 
 FORMS    += textedit.ui
 

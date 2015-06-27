@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <textformatter.h>
 #include <tabcontroller.h>
+#include <menu.h>
 
 namespace Ui {
 class TextEdit;
@@ -47,6 +48,7 @@ private:
 
     TextFormatter textFormatter;
     TabController tabController;
+    Menu menu;
 };
 
 #endif // TEXTEDIT_H

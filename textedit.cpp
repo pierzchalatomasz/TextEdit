@@ -133,82 +133,53 @@ void TextEdit::on_actionNewFile_triggered()
     file.openInCard(ui->tabWidget);
 }
 
-//Obsługa poleceń z menu edycja
-void TextEdit::on_actionMenuPaste_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_V, Qt::ControlModifier));
-}
-
-void TextEdit::on_actionMenuCopy_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_C, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_C, Qt::ControlModifier));
-}
-
-void TextEdit::on_actionMenuCut_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_X, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_X, Qt::ControlModifier));
-}
-
-void TextEdit::on_actionMenuUndo_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Z, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_Z, Qt::ControlModifier));
-}
-
-void TextEdit::on_actionMenuRedo_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_Y, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_Y, Qt::ControlModifier));
-}
-
-void TextEdit::on_actionMenuSelectAll_triggered(){
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyPress, Qt::Key_A, Qt::ControlModifier));
-    QApplication::postEvent( ui->textEdit, new QKeyEvent(QEvent::KeyRelease, Qt::Key_A, Qt::ControlModifier));
-}
-
 // Zamykanie znaczników
 void TextEdit::on_textEdit_textChanged()
 {
     textFormatter.elementsClosing(ui->textEdit);
 }
 
-// Wybór czcionki
+//Obsługa poleceń z menu edycja
+void TextEdit::on_actionMenuPaste_triggered(){
+    menu.paste(tabController.currentTextEdit());
+}
+
+void TextEdit::on_actionMenuCopy_triggered(){
+    menu.copy(tabController.currentTextEdit());
+}
+
+void TextEdit::on_actionMenuCut_triggered(){
+    menu.cut(tabController.currentTextEdit());
+}
+
+void TextEdit::on_actionMenuUndo_triggered(){
+    menu.undo(tabController.currentTextEdit());
+}
+
+void TextEdit::on_actionMenuRedo_triggered(){
+    menu.redo(tabController.currentTextEdit());
+}
+
+void TextEdit::on_actionMenuSelectAll_triggered(){
+    menu.selectAll(tabController.currentTextEdit());
+}
+
+
+// Opcje wywoływane z menu
 void TextEdit::on_actionMenuFont_triggered(){
-    bool font;
-    QFont currentFont = ui->textEdit->currentFont();
-    QFont selectedFont = QFontDialog::getFont(&font,currentFont,0,"Wybór czcionki");
-    if(!font)
-        return;
-    else
-        ui->textEdit->setFont(selectedFont);
+    menu.selectFont(tabController.currentTextEdit());
 }
 
-// Włączenie i wyłączenie kolorowania składni
 void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
-    static int mode = 1; // kolorowanie wł = 1, wył = -1
-    mode = -mode;
-
-    if(mode == -1){
-        foreach(QSyntaxHighlighter* highlighter,
-                ui->textEdit->findChildren<QSyntaxHighlighter*>()) {
-            delete highlighter;
-        }
-
-        QColor defaultcolor;
-        defaultcolor.setRgb(60, 60, 60);
-        ui->textEdit->setTextColor(defaultcolor);
-    }
-    else
-        syntaxHighlighter();
+    menu.toggleSyntaxHighlighting(tabController.currentTextEdit());
 }
 
-// Obsługa zoom (menu)
-void TextEdit::on_actionMenuZoomIn_triggered()
-{
-    ui->textEdit->zoomIn(2);
+void TextEdit::on_actionMenuZoomIn_triggered(){
+    menu.zoomIn(tabController.currentTextEdit());
 }
 
-void TextEdit::on_actionMenuZoomOut_triggered()
-{
-    ui->textEdit->zoomOut(2);
+void TextEdit::on_actionMenuZoomOut_triggered(){
+    menu.zoomOut(tabController.currentTextEdit());
 }
 
 // Aktywuje potrzebne połączenia sygnał -> slot
