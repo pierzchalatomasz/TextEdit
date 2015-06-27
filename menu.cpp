@@ -31,7 +31,7 @@ void Menu::toggleSyntaxHighlighting(QTextEdit *editor){
         editor->setTextColor(defaultcolor);
     }
     //else
-    //   editor->syntaxHighlighter();
+      //editor->
 }   //(??? czemu) syntaxHighlighter us not a member of 'QTextEdit'
 
 void Menu::zoomIn(QTextEdit *editor){

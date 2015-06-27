@@ -31,6 +31,11 @@ TextEdit::TextEdit(QWidget *parent) :
     Styles *stylesInit = new Styles();
 
     ui->menuBar->setStyleSheet("background: #fff; color: #333;");
+
+    textFormatter.lineHighlighter(tabController.currentTextEdit());
+
+    // Dodawanie tabów wewnątrz elementu
+    textFormatter.tabsInsideElements(tabController.currentTextEdit());
 }
 
 TextEdit::~TextEdit()
@@ -114,14 +119,18 @@ void TextEdit::checkFileType(QString fileName)
     }
 }
 
+void TextEdit::on_currentTextEdit_textChanged()
+{
+    // Dodawanie tabów wewnątrz elementu
+    textFormatter.tabsInsideElements(tabController.currentTextEdit());
+}
+
 // Zaznacza linię w której jest kursor (gdy pozycja kursora się zmienia)
 void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
     textFormatter.lineHighlighter(tabController.currentTextEdit());
 
-    // Dodawanie tabów wewnątrz elementu
-    textFormatter.tabsInsideElements(tabController.currentTextEdit());
-    textFormatter.elementsClosing(tabController.currentTextEdit());
+    //textFormatter.elementsClosing(tabController.currentTextEdit());
 }
 
 // stworzenie nowego pliku
@@ -194,6 +203,7 @@ void TextEdit::setConnections(){
     connect(shortcutOpenFile,SIGNAL(activated()),ui->actionOpenFile,SLOT(trigger()));
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
+    connect(tabController.currentTextEdit(),SIGNAL(textChanged()),this,SLOT(on_currentTextEdit_textChanged()));
 }
 
 //zapisanie pliku

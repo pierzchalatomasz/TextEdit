@@ -22,6 +22,7 @@ private slots:
     void on_actionOpenFile_triggered();
 
     void on_currentTextEdit_cursorPositionChanged();
+    void on_currentTextEdit_textChanged();
     void on_textEdit_textChanged();
 
    // funkcje dla przycisków z menu

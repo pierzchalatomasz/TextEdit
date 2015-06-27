@@ -56,6 +56,8 @@ void TabController::newTab(QString fileName)
 void TabController::init(QTabWidget *&getTabWidget)
 {
     tabWidget = getTabWidget;
+    tabWidget->setTabsClosable(true);
+    QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab()));
 }
 
 // zwraca wskaźnik do textEdit z otwartej karty
@@ -68,3 +70,12 @@ QTextEdit *TabController::currentTextEdit()
 
     return currentTextEdit;
 }
+
+// zamykanie karty
+void TabController::onCloseTab()
+{
+    tabWidget->removeTab(tabWidget->currentIndex());
+}
+
+TabController::~TabController()
+{}

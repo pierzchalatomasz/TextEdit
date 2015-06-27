@@ -1,4 +1,5 @@
 #include "textformatter.h"
+#include <QKeyEvent>
 
 TextFormatter::TextFormatter()
 {
@@ -25,33 +26,37 @@ void TextFormatter::lineHighlighter(QTextEdit *textEdit)
 // Taby wewnątrz elementów
 void TextFormatter::tabsInsideElements(QTextEdit *textEdit)
 {
-    QTextBlock currentLine = textEdit->textCursor().block();
-    if(currentLine.text().isEmpty() && currentLine.userState() == -1)
+    //QKeyEvent *pressedKey = new QKeyEvent;
+    //if( !pressedKey->key() == Qt::Key_Backspace )
     {
-        QString tab = "\t";
-        int tabsNumber = 0;
-        int tabsCounter = currentLine.previous().text().indexOf(tab);
-
-        while(tabsCounter >= 0)
+        QTextBlock currentLine = textEdit->textCursor().block();
+        if(currentLine.text().isEmpty() && currentLine.userState() == -1)
         {
-            tabsNumber++;
-            tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
-        }
+            QString tab = "\t";
+            int tabsNumber = 0;
+            int tabsCounter = currentLine.previous().text().indexOf(tab);
 
-        QString tabs;
-        int i = 0;
-        while(i < tabsNumber)
-        {
-            tabs.append("\t");
-            i++;
+            while(tabsCounter >= 0)
+            {
+                tabsNumber++;
+                tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
+            }
+
+            QString tabs;
+            int i = 0;
+            while(i < tabsNumber)
+            {
+                tabs.append("\t");
+                i++;
+            }
+            textEdit->textCursor().insertText(tabs);
         }
-        textEdit->textCursor().insertText(tabs);
     }
 }
 
 // Zamykanie elementów
 void TextFormatter::elementsClosing(QTextEdit *textEdit)
-{
+{/*
     for(int i = 0; i < htmlTags.length(); i++)
     {
         QTextBlock currentLine = textEdit->textCursor().block();
@@ -93,5 +98,5 @@ void TextFormatter::elementsClosing(QTextEdit *textEdit)
 
             currentLine.setUserState(1);
         }
-    }
+    }*/
 }

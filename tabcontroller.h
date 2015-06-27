@@ -5,16 +5,22 @@
 #include <QTextEdit>
 #include <QScrollArea>
 #include <QTabWidget>
+#include <QObject>
 
-class TabController
+class TabController : public QObject
 {
+    Q_OBJECT
+
 public:
     TabController();
+    ~TabController();
     void newTab(QString fileName);
     void init(QTabWidget *&getTabWidget);
     QTextEdit *currentTextEdit();
 private:
     QTabWidget *tabWidget;
+private slots:
+    void onCloseTab();
 };
 
 #endif // TABCONTROLLER_H
