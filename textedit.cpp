@@ -12,6 +12,7 @@
 #include <QFontDialog>
 #include <QShortcut>
 #include <textformatter.h>
+#include <QTextDocument>
 
 int fileType;
 TextEdit::TextEdit(QWidget *parent) :
@@ -107,6 +108,9 @@ void TextEdit::on_actionOpenFile_triggered()
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
 
+    updateLineNumArea(tabController.currentTextEdit()->document()->blockCount());
+    connect(tabController.currentTextEdit()->document(),SIGNAL(blockCountChanged(int)),this,SLOT(updateLineNumArea(int)));
+    //test działania currentLineNumberArea(), nie wiem czemu wywala bład gdy przeniosłem do setConnections() /wili
 }
 
 //sprawdzenie typu pliku
@@ -149,7 +153,7 @@ void TextEdit::on_textEdit_textChanged()
     textFormatter.elementsClosing(ui->textEdit);
 }
 
-//Obsługa poleceń z menu edycja
+// Opcje wywoływane z menu
 void TextEdit::on_actionMenuPaste_triggered(){
     menu.paste(tabController.currentTextEdit());
 }
@@ -174,8 +178,6 @@ void TextEdit::on_actionMenuSelectAll_triggered(){
     menu.selectAll(tabController.currentTextEdit());
 }
 
-
-// Opcje wywoływane z menu
 void TextEdit::on_actionMenuFont_triggered(){
     menu.selectFont(tabController.currentTextEdit());
 }
@@ -235,4 +237,8 @@ void TextEdit::on_actionZapisz_triggered()
     QTextStream out(&file);
     out<<str<<endl;
     file.close();
+}
+
+void TextEdit::updateLineNumArea(int num){
+    lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }

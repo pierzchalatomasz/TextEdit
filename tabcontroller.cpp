@@ -42,6 +42,15 @@ void TabController::newTab(QString fileName)
 
     gridLayout->addWidget(scrollArea, 0, 0, 1, 1);
 
+
+    QTextEdit *lineNumberArea = new QTextEdit(scrollArea);
+    lineNumberArea->setObjectName(QStringLiteral("lineNumberArea"));
+    lineNumberArea->setMaximumSize(QSize(30, 16777215));
+    lineNumberArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    lineNumberArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    lineNumberArea->setAlignment(Qt::AlignRight);
+    lineNumberArea->setFont(font1);
+
     newTab->setObjectName(QStringLiteral("tab"));
     newTab->setAcceptDrops(false);
     newTab->setStyleSheet(QLatin1String("background: #444;\n"
@@ -65,10 +74,20 @@ QTextEdit *TabController::currentTextEdit()
 {
     int currentIndex = tabWidget->currentIndex();
 
-    QList<QTextEdit *> allTextEdits = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>();
+    QList<QTextEdit *> allTextEdits = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>("textEdit");
     QTextEdit *currentTextEdit = allTextEdits[0];
 
     return currentTextEdit;
+}
+
+// [~] zwraca wskaźnik do pola z numerami linii w otwartej karcie (niepoprawnie)
+QTextEdit *TabController::currentLineNumberArea(){
+    int currentIndex = tabWidget->currentIndex();
+
+    QList<QTextEdit *> allLineNumberAreas = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>("lineNumberArea");
+    QTextEdit *currentLineNumberArea = allLineNumberAreas[0];
+
+    return currentLineNumberArea;
 }
 
 // zamykanie karty

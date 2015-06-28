@@ -5,6 +5,7 @@
 #include <textformatter.h>
 #include <tabcontroller.h>
 #include <menu.h>
+#include <linenumbering.h>
 
 namespace Ui {
 class TextEdit;
@@ -24,6 +25,7 @@ private slots:
     void on_currentTextEdit_cursorPositionChanged();
     void on_currentTextEdit_textChanged();
     void on_textEdit_textChanged();
+    void updateLineNumArea(int num);
 
    // funkcje dla przycisków z menu
     void on_actionNewFile_triggered();
@@ -50,6 +52,7 @@ private:
     TextFormatter textFormatter;
     TabController tabController;
     Menu menu;
+    LineNumbering lineNumbering;
 };
 
 #endif // TEXTEDIT_H
