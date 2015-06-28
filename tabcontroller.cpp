@@ -45,9 +45,11 @@ void TabController::newTab(QString fileName)
 
     QTextEdit *lineNumberArea = new QTextEdit(scrollArea);
     lineNumberArea->setObjectName(QStringLiteral("lineNumberArea"));
-    lineNumberArea->setMaximumSize(QSize(25, 16777215));
+    lineNumberArea->setMaximumSize(QSize(30, 16777215));
     lineNumberArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     lineNumberArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    lineNumberArea->setAlignment(Qt::AlignRight);
+    lineNumberArea->setFont(font1);
 
     newTab->setObjectName(QStringLiteral("tab"));
     newTab->setAcceptDrops(false);
@@ -72,7 +74,7 @@ QTextEdit *TabController::currentTextEdit()
 {
     int currentIndex = tabWidget->currentIndex();
 
-    QList<QTextEdit *> allTextEdits = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>();
+    QList<QTextEdit *> allTextEdits = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>("textEdit");
     QTextEdit *currentTextEdit = allTextEdits[0];
 
     return currentTextEdit;

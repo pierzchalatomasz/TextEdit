@@ -12,6 +12,7 @@
 #include <QFontDialog>
 #include <QShortcut>
 #include <textformatter.h>
+#include <QTextDocument>
 
 int fileType;
 TextEdit::TextEdit(QWidget *parent) :
@@ -105,8 +106,10 @@ void TextEdit::on_actionOpenFile_triggered()
     syntaxHighlighter();
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
-    //connect(tabController.currentTextEdit(),SIGNAL(textChanged()),tabController.currentLineNumberArea(),SLOT(clear()));
-    //test działania currentLineNumberArea()
+
+    updateLineNumArea(tabController.currentTextEdit()->document()->blockCount());
+    connect(tabController.currentTextEdit()->document(),SIGNAL(blockCountChanged(int)),this,SLOT(updateLineNumArea(int)));
+    //test działania currentLineNumberArea(), nie wiem czemu wywala bład gdy przeniosłem do setConnections() /wili
 }
 
 //sprawdzenie typu pliku
@@ -233,4 +236,8 @@ void TextEdit::on_actionZapisz_triggered()
     QTextStream out(&file);
     out<<str<<endl;
     file.close();
+}
+
+void TextEdit::updateLineNumArea(int num){
+    lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }

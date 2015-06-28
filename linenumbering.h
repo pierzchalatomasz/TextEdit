@@ -6,7 +6,7 @@ class LineNumbering
 {
 public:
     LineNumbering();
-    void updateLineNumberArea(QTextEdit *lineNumberArea);
+    void updateLineNumberArea(QTextEdit *lineNumberArea, int num);
 };
 
 #endif // LINENUMBERING_H
