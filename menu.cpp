@@ -6,14 +6,16 @@ Menu::Menu()
 
 }
 
-void Menu::selectFont(QTextEdit *editor){
+void Menu::selectFont(QTextEdit *editor, QTextEdit *lineNum){
     bool font;
     QFont currentFont = editor->currentFont();
     QFont selectedFont = QFontDialog::getFont(&font,currentFont,0,"Wybór czcionki");
     if(!font)
         return;
-    else
+    else{
         editor->setFont(selectedFont);
+        lineNum->setFont(selectedFont);
+    }
 }
 
 void Menu::toggleSyntaxHighlighting(QTextEdit *editor){
