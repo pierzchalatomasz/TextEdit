@@ -37,7 +37,7 @@ TextEdit::TextEdit(QWidget *parent) :
     textFormatter.lineHighlighter(tabController.currentTextEdit());
 
     // Dodawanie tabów wewnątrz elementu
-    textFormatter.tabsInsideElements(tabController.currentTextEdit());
+    //textFormatter.tabsInsideElements(tabController.currentTextEdit());
 }
 
 TextEdit::~TextEdit()

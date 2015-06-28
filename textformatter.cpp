@@ -23,34 +23,31 @@ void TextFormatter::lineHighlighter(QTextEdit *textEdit)
     textEdit->setExtraSelections( extras );
 }
 
-// Taby wewnątrz elementów
+// Wcięcia wewnątrz elementów
 void TextFormatter::tabsInsideElements(QTextEdit *textEdit)
 {
-    //QKeyEvent *pressedKey = new QKeyEvent;
-    //if( !pressedKey->key() == Qt::Key_Backspace )
+    QTextBlock currentLine = textEdit->textCursor().block();
+    if(currentLine.text().isEmpty() && !currentLine.text().contains("\t") && currentLine.userState() == -1)
     {
-        QTextBlock currentLine = textEdit->textCursor().block();
-        if(currentLine.text().isEmpty() && currentLine.userState() == -1)
+        QString tab = "\t";
+        int tabsNumber = 0;
+        int tabsCounter = currentLine.previous().text().indexOf(tab);
+
+        while(tabsCounter >= 0)
         {
-            QString tab = "\t";
-            int tabsNumber = 0;
-            int tabsCounter = currentLine.previous().text().indexOf(tab);
-
-            while(tabsCounter >= 0)
-            {
-                tabsNumber++;
-                tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
-            }
-
-            QString tabs;
-            int i = 0;
-            while(i < tabsNumber)
-            {
-                tabs.append("\t");
-                i++;
-            }
-            textEdit->textCursor().insertText(tabs);
+            tabsNumber++;
+            tabsCounter = currentLine.previous().text().indexOf(tab, tabsCounter + tab.length());
         }
+
+        QString tabs;
+        int i = 0;
+        while(i < tabsNumber)
+        {
+            tabs.append("\t");
+            i++;
+        }
+        textEdit->textCursor().insertText(tabs);
+        currentLine.setUserState(0);
     }
 }
 
