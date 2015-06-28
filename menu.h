@@ -22,7 +22,7 @@ public:
     // Ustawienia
     void zoomIn(QTextEdit *editor);
     void zoomOut(QTextEdit *editor);
-    void selectFont(QTextEdit *editor);
+    void selectFont(QTextEdit *editor, QTextEdit *lineNum);
     void toggleSyntaxHighlighting(QTextEdit *editor);
 
 };

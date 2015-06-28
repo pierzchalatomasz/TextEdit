@@ -13,6 +13,7 @@
 #include <QShortcut>
 #include <textformatter.h>
 #include <QTextDocument>
+#include <QScrollBar>
 
 int fileType;
 TextEdit::TextEdit(QWidget *parent) :
@@ -107,10 +108,15 @@ void TextEdit::on_actionOpenFile_triggered()
     syntaxHighlighter();
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
+    setLineNumberArea();
+}
 
+void TextEdit::setLineNumberArea(){
+    tabController.currentLineNumberArea()->setCursor(Qt::ArrowCursor);
     updateLineNumArea(tabController.currentTextEdit()->document()->blockCount());
     connect(tabController.currentTextEdit()->document(),SIGNAL(blockCountChanged(int)),this,SLOT(updateLineNumArea(int)));
-    //test działania currentLineNumberArea(), nie wiem czemu wywala bład gdy przeniosłem do setConnections() /wili
+    connect(tabController.currentTextEdit()->verticalScrollBar(),SIGNAL(valueChanged(int)),
+            tabController.currentLineNumberArea()->verticalScrollBar(),SLOT(setValue(int)));
 }
 
 //sprawdzenie typu pliku
@@ -179,7 +185,7 @@ void TextEdit::on_actionMenuSelectAll_triggered(){
 }
 
 void TextEdit::on_actionMenuFont_triggered(){
-    menu.selectFont(tabController.currentTextEdit());
+    menu.selectFont(tabController.currentTextEdit(), tabController.currentLineNumberArea());
 }
 
 void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){

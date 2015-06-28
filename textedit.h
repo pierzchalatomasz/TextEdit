@@ -25,7 +25,7 @@ private slots:
     void on_currentTextEdit_cursorPositionChanged();
     void on_currentTextEdit_textChanged();
     void on_textEdit_textChanged();
-    void updateLineNumArea(int num);
+    void updateLineNumArea(int num); //aktualizuje pole z numerami linii
 
    // funkcje dla przycisków z menu
     void on_actionNewFile_triggered();
@@ -48,6 +48,7 @@ private:
     void syntaxHighlighter();
     void setConnections();
     void newTab(QString fileName);
+    void setLineNumberArea();
 
     TextFormatter textFormatter;
     TabController tabController;

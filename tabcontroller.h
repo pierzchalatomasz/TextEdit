@@ -6,6 +6,8 @@
 #include <QScrollArea>
 #include <QTabWidget>
 #include <QObject>
+#include <QScrollBar>
+#include <QApplication>
 
 class TabController : public QObject
 {
