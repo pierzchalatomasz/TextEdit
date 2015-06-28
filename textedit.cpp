@@ -31,6 +31,7 @@ TextEdit::TextEdit(QWidget *parent) :
     Styles *stylesInit = new Styles();
 
     ui->menuBar->setStyleSheet("background: #fff; color: #333;");
+    ui->textEdit->setStyleSheet("QScrollBar:vertical { width: 5px; background: #333 !important; border: none !important; } QScrollBar::handle:vertical { background: #222 !important; border-radius: 5px; }");
 
     textFormatter.lineHighlighter(tabController.currentTextEdit());
 
