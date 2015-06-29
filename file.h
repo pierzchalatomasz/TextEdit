@@ -12,8 +12,10 @@ public:
     ~File();
     QString getFileContent();
     void openInCard(QTabWidget *&tabWidget);
+    int checkFileType();
 private:
     QFile file;
+    QString fileName;
 };
 
 #endif // FILE_H

@@ -44,8 +44,7 @@ private:
     Ui::TextEdit *ui;
     QString cutFileName(QString fileName);
     void loadFile( QString fileName );
-    void checkFileType( QString fileName );
-    void syntaxHighlighter();
+    void syntaxHighlighter(int fileType);
     void setConnections();
     void newTab(QString fileName);
     void setLineNumberArea();

@@ -25,7 +25,7 @@ TextEdit::TextEdit(QWidget *parent) :
 
     File file("test.html");
     file.openInCard(ui->tabWidget);
-    syntaxHighlighter();
+    syntaxHighlighter(1);
     setConnections();
 
     TextEdit::setWindowIcon(QIcon(":/icons/icons/pencil.png"));
@@ -46,44 +46,17 @@ TextEdit::~TextEdit()
     delete ui;
 }
 
-// Ładuje plik
-void TextEdit::loadFile(QString fileName)
-{
-    if(fileType==1){
-    QFile file(fileName);
-    file.open(QIODevice::ReadWrite);
-
-    if( !file.error() )
-    {
-        QTextStream fileStream(&file);
-        QString fileString = fileStream.readAll();
-
-        Ui::TextEdit* newUi = new Ui::TextEdit;
-        newUi->textEdit->setPlainText(fileString);
-    }
-    else
-    {
-        QDialog loadFileErrorDialog;
-        loadFileErrorDialog.show();
-        ui->textEdit->setPlainText("Niestety, nie udało się otworzyć pliku!");
-    }
-    }
-    if(fileType==2){
-
-    }
-}
-
 // Aktywuje kolorowanie składni
-void TextEdit::syntaxHighlighter()
+void TextEdit::syntaxHighlighter(int fileType)
 {
     SyntaxHighlighter* highlighter = new SyntaxHighlighter(tabController.currentTextEdit()->document());
+    highlighter->setFileType(fileType);
 }
 
 //skraca nazwe pliku w kartach
 QString TextEdit::cutFileName(QString fileName){
     QString shortFileName;
     int lastIndex;
-
 
     lastIndex=fileName.lastIndexOf(QRegExp("/"));
 
@@ -99,13 +72,11 @@ void TextEdit::on_actionOpenFile_triggered()
     QString fileName = QFileDialog::getOpenFileName();
     QString shortFileName=cutFileName(fileName);
 
-    checkFileType(fileName);
-
     File file(fileName);
     tabController.newTab(shortFileName);
     file.openInCard(ui->tabWidget);
 
-    syntaxHighlighter();
+    syntaxHighlighter(file.checkFileType());
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
     setLineNumberArea();
@@ -119,17 +90,6 @@ void TextEdit::setLineNumberArea(){
             tabController.currentLineNumberArea()->verticalScrollBar(),SLOT(setValue(int)));
 }
 
-//sprawdzenie typu pliku
-void TextEdit::checkFileType(QString fileName)
-{
-    if(fileName.endsWith("html")||fileName.endsWith("htm")){
-        fileType=1;
-    }
-    else if(fileName.endsWith("css")){
-        fileType=2;
-    }
-}
-
 void TextEdit::on_currentTextEdit_textChanged()
 {
     // Dodawanie tabów wewnątrz elementu
@@ -140,6 +100,7 @@ void TextEdit::on_currentTextEdit_textChanged()
 void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
     textFormatter.lineHighlighter(tabController.currentTextEdit());
+    textFormatter.highlightBlock(tabController.currentTextEdit());
 
     //textFormatter.elementsClosing(tabController.currentTextEdit());
 }

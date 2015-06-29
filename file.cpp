@@ -5,6 +5,7 @@
 File::File(QString fileName) : file(fileName)
 {
     file.open(QIODevice::ReadWrite);
+    File::fileName = fileName;
 }
 
 // Otwiera plik w ostatniej karcie
@@ -33,6 +34,23 @@ QString File::getFileContent()
     {
         QString fail = "Nie udało się";
         return fail;
+    }
+}
+
+//sprawdzenie typu pliku
+int File::checkFileType()
+{
+    if(fileName.endsWith("html")||fileName.endsWith("htm"))
+    {
+        return 1;
+    }
+    else if(fileName.endsWith("css"))
+    {
+        return 2;
+    }
+    else
+    {
+        return 0;
     }
 }
 

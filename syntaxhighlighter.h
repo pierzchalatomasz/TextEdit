@@ -16,6 +16,10 @@ public:
 
     void highlightBlock(const QString &text);
     void regExpFormatting(const QString &text, QString pattern, QColor color );
+    void setFileType(int fileType);
+
+private:
+    int fileType;
 };
 
 #endif // SYNTAXHIGHLIGHTER_H

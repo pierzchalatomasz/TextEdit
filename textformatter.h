@@ -11,6 +11,7 @@ public:
     void lineHighlighter(QTextEdit *textEdit);
     void tabsInsideElements(QTextEdit *textEdit);
     void elementsClosing(QTextEdit *textEdit);
+    void highlightBlock(QTextEdit *textEdit);
 private:
     QList<QString> htmlTags;
 };

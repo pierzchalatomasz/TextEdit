@@ -23,6 +23,39 @@ void TextFormatter::lineHighlighter(QTextEdit *textEdit)
     textEdit->setExtraSelections( extras );
 }
 
+// Podświetlanie bloku
+void TextFormatter::highlightBlock(QTextEdit *textEdit)
+{/*
+    int openings = 0, closings = 0;
+    QTextBlock currentLine = textEdit->textCursor().block();
+    for(int i = 0; i < htmlTags.length(); i++)
+    {
+        currentLine.text().append("test");
+        //while(true)
+        {
+            QString openingRegExp = "<" + htmlTags.at(i) + ".*>";
+            QRegExp openingExpression(openingRegExp);
+            int openingIndex = currentLine.text().indexOf(openingExpression);
+
+            if (openingIndex >= 0)
+                openings++;
+
+            QString closingRegExp = "</" + htmlTags.at(i) + ">";
+            QRegExp closingExpression(closingRegExp);
+            int closingIndex = currentLine.text().indexOf(closingExpression);
+
+            if (closingIndex >= 0)
+                closings++;
+
+            currentLine.text().append("block");
+            currentLine.next();
+
+            if(openings == closings && openings != 0)
+                break;
+        }
+    }*/
+}
+
 // Wcięcia wewnątrz elementów
 void TextFormatter::tabsInsideElements(QTextEdit *textEdit)
 {
