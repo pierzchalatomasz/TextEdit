@@ -39,7 +39,10 @@ private slots:
     void on_actionMenuSyntaxHighlighting_triggered();
     void on_actionMenuZoomOut_triggered();
     void on_actionMenuZoomIn_triggered();
-    void on_actionZapisz_triggered();
+    void on_actionSave_triggered();
+
+    void on_actionSaveAs_triggered();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );

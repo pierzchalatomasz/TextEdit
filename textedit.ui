@@ -156,6 +156,8 @@ color: #ccc;</string>
     </property>
     <addaction name="actionNewFile"/>
     <addaction name="actionOpenFile"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
    </widget>
    <widget class="QMenu" name="menuSzukaj">
     <property name="title">
@@ -258,6 +260,16 @@ color: #ccc;</string>
   <action name="actionMenuZoomOut">
    <property name="text">
     <string>Pomniejsz</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Zapisz</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Zapisz jako</string>
    </property>
   </action>
  </widget>

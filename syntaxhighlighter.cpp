@@ -27,7 +27,7 @@ void SyntaxHighlighter::highlightBlock(const QString &text)
     else if(fileType == 2)
     {
         // Komentarze CSS
-        regExpFormatting( text, "/\\*[\\s]*.*[\\s]*\\n*\\*/", Qt::gray );
+        regExpFormatting( text, "/\\*[\\s]*.*[\\s]*\\r*\\n*\\*/", Qt::gray );
         regExpFormatting( text, "//[\\s]*.*", Qt::gray );
 
         // Reguły CSS

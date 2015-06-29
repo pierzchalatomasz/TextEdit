@@ -179,19 +179,23 @@ void TextEdit::setConnections(){
  return 0;
  }*/
 
-//zapisywanie pliku jako..
-void TextEdit::on_actionZapisz_triggered()
+void TextEdit::updateLineNumArea(int num){
+    lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
+}
+
+void TextEdit::on_actionSave_triggered()
 {
 
-    QString str = ui->textEdit->toPlainText();
+}
+
+//zapisywanie pliku jako..
+void TextEdit::on_actionSaveAs_triggered()
+{
+    QString str = tabController.currentTextEdit()->toPlainText();
     QString fileName = QFileDialog::getSaveFileName();
     QFile file(fileName);
     file.open(QIODevice::WriteOnly|QIODevice::Text);
     QTextStream out(&file);
     out<<str<<endl;
     file.close();
-}
-
-void TextEdit::updateLineNumArea(int num){
-    lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }
