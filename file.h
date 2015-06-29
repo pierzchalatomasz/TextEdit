@@ -13,6 +13,7 @@ public:
     QString getFileContent();
     void openInCard(QTabWidget *&tabWidget);
     int checkFileType();
+    QString cutFileName();
 private:
     QFile file;
     QString fileName;

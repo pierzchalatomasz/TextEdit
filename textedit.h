@@ -42,7 +42,6 @@ private slots:
     void on_actionZapisz_triggered();
 private:
     Ui::TextEdit *ui;
-    QString cutFileName(QString fileName);
     void loadFile( QString fileName );
     void syntaxHighlighter(int fileType);
     void setConnections();

@@ -53,31 +53,17 @@ void TextEdit::syntaxHighlighter(int fileType)
     highlighter->setFileType(fileType);
 }
 
-//skraca nazwe pliku w kartach
-QString TextEdit::cutFileName(QString fileName){
-    QString shortFileName;
-    int lastIndex;
-
-    lastIndex=fileName.lastIndexOf(QRegExp("/"));
-
-    for(int i=lastIndex+1; i<fileName.length(); i++){
-        shortFileName=shortFileName+fileName[i];
-    }
-    return shortFileName;
-}
-
 //otwarcie pliku
 void TextEdit::on_actionOpenFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName();
-    QString shortFileName=cutFileName(fileName);
-
     File file(fileName);
+    QString shortFileName = file.cutFileName();
+
     tabController.newTab(shortFileName);
     file.openInCard(ui->tabWidget);
 
     syntaxHighlighter(file.checkFileType());
-
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
     setLineNumberArea();
 }
