@@ -39,20 +39,25 @@ void TabController::newTab(QString fileName)
 
     QScrollArea *scrollArea = new QScrollArea(newTab);
     scrollArea->setObjectName(QStringLiteral("scrollArea"));
-    scrollArea->setMaximumSize(QSize(30, 16777215));
+    scrollArea->setMaximumSize(QSize(45, 16777215));
     scrollArea->setStyleSheet(QStringLiteral("background: #494949;"));
     scrollArea->setWidgetResizable(true);
 
     QWidget *scrollAreaWidgetContents = new QWidget();
     scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
     scrollAreaWidgetContents->setGeometry(QRect(0, 0, 30, 313));
+    //scrollAreaWidgetContents->setMaximumHeight(16777215);
     scrollArea->setWidget(scrollAreaWidgetContents);
 
     gridLayout->addWidget(scrollArea, 0, 0, 1, 1);
 
+    QGridLayout *scrollAreaInner = new QGridLayout(scrollAreaWidgetContents);
+    QWidget *lineNumberAreaWrapper = new QWidget();
+    scrollAreaInner->addWidget(lineNumberAreaWrapper);
 
-    QTextEdit *lineNumberArea = new QTextEdit(scrollArea);
+    QTextEdit *lineNumberArea = new QTextEdit(lineNumberAreaWrapper);
     lineNumberArea->setObjectName(QStringLiteral("lineNumberArea"));
+    lineNumberArea->setMinimumHeight(3000);
     lineNumberArea->setMaximumSize(QSize(40, 16777215));
     lineNumberArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     lineNumberArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
