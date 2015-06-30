@@ -56,6 +56,7 @@ void TextEdit::syntaxHighlighter(int fileType)
 //otwarcie pliku
 void TextEdit::on_actionOpenFile_triggered()
 {
+
     QString fileName = QFileDialog::getOpenFileName();
     File file(fileName);
     QString shortFileName = file.cutFileName();
@@ -186,7 +187,30 @@ void TextEdit::updateLineNumArea(int num){
 void TextEdit::on_actionSave_triggered()
 {
 
-}
+
+   /*
+        mFile = new QFile;
+
+        if(sciezka!="") mFile->setFileName(sciezka);
+        else
+        {
+            mFile->setFileName(QFileDialog::getSaveFileName(this, "Save file", "/home",""));
+            sciezka = mFile->fileName();
+        }
+
+        out = new QTextStream(mFile);
+
+        if(!mFile->open(QFile::WriteOnly))
+        {
+            QMessageBox::information(this,"Błąd", "Plik nie istnieje bądź jest tylko do odczytu");
+            return;
+        }
+
+        *out << tabController.currentTextEdit()->toPlainText();
+        mFile->close();
+        */
+    }
+
 
 //zapisywanie pliku jako..
 void TextEdit::on_actionSaveAs_triggered()
@@ -199,3 +223,4 @@ void TextEdit::on_actionSaveAs_triggered()
     out<<str<<endl;
     file.close();
 }
+

@@ -40,7 +40,6 @@ private slots:
     void on_actionMenuZoomOut_triggered();
     void on_actionMenuZoomIn_triggered();
     void on_actionSave_triggered();
-
     void on_actionSaveAs_triggered();
 
 private:
