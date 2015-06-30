@@ -1,12 +1,14 @@
 #include <file.h>
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 
 File::File(QString fileName) : file(fileName)
 {
     file.open(QIODevice::ReadWrite);
     File::fileName = fileName;
 }
+
 
 // Otwiera plik w ostatniej karcie
 void File::openInCard(QTabWidget *&tabWidget)
@@ -20,6 +22,14 @@ void File::openInCard(QTabWidget *&tabWidget)
     tabWidget->setCurrentIndex(tabIndex - 1);
 }
 
+void File::save(QString str){
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly|QIODevice::Text);
+    QTextStream out(&file);
+    out<<str<<endl;
+    file.close();
+}
+
 // Zwraca treść pliku
 QString File::getFileContent()
 {
@@ -30,9 +40,14 @@ QString File::getFileContent()
 
         return fileString;
     }
+
     else
     {
-        QString fail = "Nie udało się";
+        QMessageBox sch ( "ERROR", "Blad otwarcia pliku.",
+        QMessageBox::Warning,
+        QMessageBox::Ok, 0, 0 );
+        sch.exec();
+        QString fail = "";
         return fail;
     }
 }
@@ -48,8 +63,15 @@ int File::checkFileType()
     {
         return 2;
     }
-    else
+    else if(fileName.endsWith("txt"))
     {
+        return 3;
+    }
+    else{
+        QMessageBox sch ( "ERROR", "Edytor obsługuje pliki html, htm, css, txt",
+        QMessageBox::Warning,
+        QMessageBox::Ok, 0, 0 );
+        sch.exec();
         return 0;
     }
 }

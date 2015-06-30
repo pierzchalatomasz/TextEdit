@@ -14,6 +14,8 @@ public:
     void openInCard(QTabWidget *&tabWidget);
     int checkFileType();
     QString cutFileName();
+    friend class TextEdit;
+    void save(QString str);
 private:
     QFile file;
     QString fileName;
