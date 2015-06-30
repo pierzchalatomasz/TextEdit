@@ -5,9 +5,11 @@
 #include <QFontDialog>
 #include <QSyntaxHighlighter>
 #include <QApplication>
+#include <QObject>
 
-class Menu
+class Menu : public QObject
 {
+
 public:
     Menu();
 
@@ -18,7 +20,7 @@ public:
     void undo(QTextEdit *editor);
     void redo(QTextEdit *editor);
     void selectAll(QTextEdit *editor);
-
+    void saveAs(QTextEdit *editor);
     // Ustawienia
     void zoomIn(QTextEdit *editor);
     void zoomOut(QTextEdit *editor);
