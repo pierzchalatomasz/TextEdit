@@ -49,6 +49,7 @@ private:
     void setConnections();
     void newTab(QString fileName);
     void setLineNumberArea();
+    void openUntitled();
 
     TextFormatter textFormatter;
     TabController tabController;

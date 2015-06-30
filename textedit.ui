@@ -45,7 +45,7 @@ margin: 0px</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tab_3">
        <property name="acceptDrops">
         <bool>false</bool>
        </property>
@@ -111,7 +111,7 @@ color: #ccc;</string>
              <x>0</x>
              <y>0</y>
              <width>30</width>
-             <height>313</height>
+             <height>352</height>
             </rect>
            </property>
           </widget>
@@ -132,7 +132,7 @@ color: #ccc;</string>
      <x>0</x>
      <y>0</y>
      <width>680</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="defaultUp">

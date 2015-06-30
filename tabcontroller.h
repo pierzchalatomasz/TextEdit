@@ -27,7 +27,7 @@ private:
     QList<QString> fileNames;
     void saveFileName(QString fileName);
 private slots:
-    void onCloseTab();
+    void onCloseTab(int index);
 };
 
 #endif // TABCONTROLLER_H

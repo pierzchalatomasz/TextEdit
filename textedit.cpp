@@ -22,28 +22,34 @@ TextEdit::TextEdit(QWidget *parent) :
 {
     ui->setupUi(this);
     tabController.init(ui->tabWidget);
-
-    File file("test.html");
-    file.openInCard(ui->tabWidget);
-    syntaxHighlighter(1);
     setConnections();
-
     TextEdit::setWindowIcon(QIcon(":/icons/icons/pencil.png"));
-
     Styles *stylesInit = new Styles();
-
     ui->menuBar->setStyleSheet("background: #fff; color: #333;");
     ui->textEdit->setStyleSheet("QScrollBar:vertical { width: 5px; background: #333 !important; border: none !important; } QScrollBar::handle:vertical { background: #222 !important; border-radius: 5px; }");
 
-    textFormatter.lineHighlighter(tabController.currentTextEdit());
-
-    // Dodawanie tabów wewnątrz elementu
-    //textFormatter.tabsInsideElements(tabController.currentTextEdit());
+    openUntitled();
 }
 
 TextEdit::~TextEdit()
 {
     delete ui;
+}
+
+// Otwiera pierwszy plik
+void TextEdit::openUntitled()
+{
+    ui->tabWidget->removeTab(0);
+
+    QString fileName = "untitled.html";
+    File file(fileName);
+
+    tabController.newTab(fileName);
+    file.openInCard(ui->tabWidget);
+
+    syntaxHighlighter(file.checkFileType());
+    connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
+    setLineNumberArea();
 }
 
 // Aktywuje kolorowanie składni
@@ -86,8 +92,6 @@ void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
     textFormatter.lineHighlighter(tabController.currentTextEdit());
     textFormatter.highlightBlock(tabController.currentTextEdit());
-
-    //textFormatter.elementsClosing(tabController.currentTextEdit());
 }
 
 // stworzenie nowego pliku

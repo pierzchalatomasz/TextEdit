@@ -8,7 +8,7 @@ void TabController::init(QTabWidget *&getTabWidget)
 {
     tabWidget = getTabWidget;
     tabWidget->setTabsClosable(true);
-    QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab()));
+    QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab(int)));
 }
 
 // Tworzy nową kartę (layout skopiowany z designera)
@@ -121,9 +121,16 @@ QTextEdit *TabController::currentLineNumberArea(){
 }
 
 // zamykanie karty
-void TabController::onCloseTab()
+void TabController::onCloseTab(int index)
 {
-    tabWidget->removeTab(tabWidget->currentIndex());
+    QList<QTextEdit *> allLineNumberAreas = tabWidget->findChildren<QTextEdit *>("lineNumberArea");
+    if(allLineNumberAreas.length() > 1)
+    {
+        QWidget *tab = tabWidget->widget(index);
+        tabWidget->removeTab(index);
+        delete tab;
+
+    }
 }
 
 TabController::~TabController()
