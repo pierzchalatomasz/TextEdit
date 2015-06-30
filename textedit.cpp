@@ -185,7 +185,7 @@ void TextEdit::updateLineNumArea(int num){
 
 void TextEdit::on_actionSave_triggered()
 {
-
+    //tabController.currentTextEdit()->append(tabController.currentFileName());
 }
 
 //zapisywanie pliku jako..

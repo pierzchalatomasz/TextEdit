@@ -20,8 +20,11 @@ public:
     void init(QTabWidget *&getTabWidget);
     QTextEdit *currentTextEdit();
     QTextEdit *currentLineNumberArea();
+    QString currentFileName();
 private:
     QTabWidget *tabWidget;
+    QList<QString> fileNames;
+    void saveFileName(QString fileName);
 private slots:
     void onCloseTab();
 };

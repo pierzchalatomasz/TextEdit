@@ -3,6 +3,14 @@
 TabController::TabController()
 {}
 
+// tabWidget staje się referencją do ui->tabWidget
+void TabController::init(QTabWidget *&getTabWidget)
+{
+    tabWidget = getTabWidget;
+    tabWidget->setTabsClosable(true);
+    QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab()));
+}
+
 // Tworzy nową kartę (layout skopiowany z designera)
 void TabController::newTab(QString fileName)
 {
@@ -62,14 +70,19 @@ void TabController::newTab(QString fileName)
 
     newTab->setLayout(gridLayout);
     tabWidget->addTab(newTab, fileName);
+
+    saveFileName(fileName);
 }
 
-// tabWidget staje się referencją do ui->tabWidget
-void TabController::init(QTabWidget *&getTabWidget)
+void TabController::saveFileName(QString fileName)
 {
-    tabWidget = getTabWidget;
-    tabWidget->setTabsClosable(true);
-    QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab()));
+    fileNames << fileName;
+}
+
+// zwraca nazwę pliku z aktywnej karty
+QString TabController::currentFileName()
+{
+    return fileNames[tabWidget->currentIndex()];
 }
 
 // zwraca wskaźnik do textEdit z otwartej karty
