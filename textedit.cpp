@@ -160,6 +160,8 @@ void TextEdit::setConnections(){
     connect(shortcutNewFile,SIGNAL(activated()),ui->actionNewFile,SLOT(trigger()));
     QShortcut *shortcutOpenFile = new QShortcut(QKeySequence("Ctrl+O"),this);
     connect(shortcutOpenFile,SIGNAL(activated()),ui->actionOpenFile,SLOT(trigger()));
+    QShortcut *shortcutSaveAs = new QShortcut(QKeySequence("Ctrl+S"),this);
+    connect(shortcutSaveAs,SIGNAL(activated()),ui->actionSaveAs,SLOT(trigger()));
 
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
     connect(tabController.currentTextEdit(),SIGNAL(textChanged()),this,SLOT(on_currentTextEdit_textChanged()));

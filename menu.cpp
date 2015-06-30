@@ -88,8 +88,9 @@ void Menu::selectAll(QTextEdit *editor){
     QApplication::postEvent( editor, new QKeyEvent
                              (QEvent::KeyRelease, Qt::Key_A, Qt::ControlModifier));
 }
-/*void Menu::saveAs(QTextEdit *editor){
-    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+S"), ui->menuPlik);
-    QObject::connect(shortcut, SIGNAL(activated()), actionSaveAs, SLOT(yourSlotHere()));
-
-}*/
+/*
+void Menu::saveAs(QTextEdit *editor){
+    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+S"));
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(yourSlotHere()));
+}
+*/
