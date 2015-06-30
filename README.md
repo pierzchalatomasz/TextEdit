@@ -1,10 +1,11 @@
-# TextEdit
-Klasy:
-<br>
-<strong>TextEdit</strong> - Glowna klasa programu
-<br>
-<strong>SyntaxHighlighter</strong> - Formatowanie skladni
-<br>
-<strong>Menu</strong> - Menu glowne programu
-<br>
-<strong>Files</strong> - Obsluga plikow
+TextEdit
+========
+*Autorzy: Igor Mańka, Wilhelm Olejnik, Tomasz Pierzchała*
+
+Opis programu
+-------------
+TextEdit to program służący do edycji tekstu, ukierunkowany w stronę HTML / CSS z podwietlaniem składni.
+
+Klasy
+-----
+**TextEdit** - klasa głównego okna, sterująca całym programem
