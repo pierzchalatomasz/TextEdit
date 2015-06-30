@@ -76,20 +76,6 @@ int File::checkFileType()
     }
 }
 
-//skraca nazwe pliku w kartach
-QString File::cutFileName(){
-    QString shortFileName;
-    int lastIndex;
-
-    lastIndex=fileName.lastIndexOf(QRegExp("/"));
-
-    for(int i=lastIndex+1; i<fileName.length(); i++)
-    {
-        shortFileName=shortFileName+fileName[i];
-    }
-    return shortFileName;
-}
-
 File::~File()
 {
     file.close();

@@ -69,7 +69,7 @@ void TabController::newTab(QString fileName)
     "padding: 0;"));
 
     newTab->setLayout(gridLayout);
-    tabWidget->addTab(newTab, fileName);
+    tabWidget->addTab(newTab, cutFileName(fileName));
 
     saveFileName(fileName);
 }
@@ -77,6 +77,20 @@ void TabController::newTab(QString fileName)
 void TabController::saveFileName(QString fileName)
 {
     fileNames << fileName;
+}
+
+//skraca nazwe pliku w kartach
+QString TabController::cutFileName(QString fileName){
+    QString shortFileName;
+    int lastIndex;
+
+    lastIndex=fileName.lastIndexOf(QRegExp("/"));
+
+    for(int i=lastIndex+1; i<fileName.length(); i++)
+    {
+        shortFileName=shortFileName+fileName[i];
+    }
+    return shortFileName;
 }
 
 // zwraca nazwę pliku z aktywnej karty

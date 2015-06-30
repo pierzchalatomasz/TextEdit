@@ -21,6 +21,7 @@ public:
     QTextEdit *currentTextEdit();
     QTextEdit *currentLineNumberArea();
     QString currentFileName();
+    QString cutFileName(QString fileName);
 private:
     QTabWidget *tabWidget;
     QList<QString> fileNames;

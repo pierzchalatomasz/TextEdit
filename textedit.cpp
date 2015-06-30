@@ -56,12 +56,10 @@ void TextEdit::syntaxHighlighter(int fileType)
 //otwarcie pliku
 void TextEdit::on_actionOpenFile_triggered()
 {
-
     QString fileName = QFileDialog::getOpenFileName();
     File file(fileName);
-    QString shortFileName = file.cutFileName();
 
-    tabController.newTab(shortFileName);
+    tabController.newTab(fileName);
     file.openInCard(ui->tabWidget);
 
     syntaxHighlighter(file.checkFileType());
@@ -186,8 +184,6 @@ void TextEdit::updateLineNumArea(int num){
 
 void TextEdit::on_actionSave_triggered()
 {
-    //tabController.currentTextEdit()->append(tabController.currentFileName());
-
    /*
         mFile = new QFile;
 
