@@ -15,12 +15,12 @@ class ColorPicker : public QDialog
 public:
     explicit ColorPicker(QWidget *parent = 0);
     ~ColorPicker();
-    void setConnections();
-    void setElements();
+    void setConnections(); // ustawia wymagane połączenia
+    void setElements(); // formatuje elementy okna
 
 private slots:
-    void colorChanged();
-
+    void colorChanged(); // zmienia kolor okienka podglądu
+                         // oraz wyświetla go jako rgb i hex
 private:
     Ui::ColorPicker *ui;
 };
