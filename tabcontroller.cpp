@@ -36,7 +36,7 @@ void TabController::newTab(QString fileName)
     textEdit->setProperty("currentIndex", QVariant(0));
 
     gridLayout->addWidget(textEdit, 0, 1, 1, 1);
-
+/*
     QScrollArea *scrollArea = new QScrollArea(newTab);
     scrollArea->setObjectName(QStringLiteral("scrollArea"));
     scrollArea->setMaximumSize(QSize(30, 16777215));
@@ -49,9 +49,8 @@ void TabController::newTab(QString fileName)
     scrollArea->setWidget(scrollAreaWidgetContents);
 
     gridLayout->addWidget(scrollArea, 0, 0, 1, 1);
-
-
-    QTextEdit *lineNumberArea = new QTextEdit(scrollArea);
+*/
+    QTextEdit *lineNumberArea = new QTextEdit();
     lineNumberArea->setObjectName(QStringLiteral("lineNumberArea"));
     lineNumberArea->setMaximumSize(QSize(40, 16777215));
     lineNumberArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -60,7 +59,9 @@ void TabController::newTab(QString fileName)
     lineNumberArea->setFont(font1);
     lineNumberArea->setReadOnly(true);
     lineNumberArea->verticalScrollBar()->setDisabled(1);
+    lineNumberArea->setStyleSheet(QStringLiteral("background: #494949;"));
 
+    gridLayout->addWidget(lineNumberArea, 0, 0, 1, 1);
 
     newTab->setObjectName(QStringLiteral("tab"));
     newTab->setAcceptDrops(false);
