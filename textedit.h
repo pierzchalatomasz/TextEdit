@@ -26,7 +26,6 @@ private slots:
 
     void on_currentTextEdit_cursorPositionChanged();
     void on_currentTextEdit_textChanged();
-    void on_textEdit_textChanged();
     void updateLineNumArea(int num); //aktualizuje pole z numerami linii
 
    // funkcje dla przycisków z menu
