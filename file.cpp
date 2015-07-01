@@ -21,7 +21,8 @@ void File::openInCard(QTabWidget *&tabWidget)
     tabWidget->setCurrentIndex(tabIndex - 1);
 }
 
-void File::save(QTextEdit *wsk){
+void File::save(QTextEdit *wsk)
+{
     file.open(QIODevice::WriteOnly | QIODevice::Truncate);
     QTextStream out(&file);
     if(file.error())
@@ -34,7 +35,6 @@ void File::save(QTextEdit *wsk){
 
     out << wsk->toPlainText();
 }
-
 
 // Zwraca treść pliku
 QString File::getFileContent()

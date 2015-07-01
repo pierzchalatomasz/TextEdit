@@ -205,19 +205,13 @@ void TextEdit::on_actionSave_triggered()
     file.save(tabController.currentTextEdit());
 }
 
-
 // zapisywanie pliku jako
 void TextEdit::on_actionSaveAs_triggered()
 {
-    QString str = tabController.currentTextEdit()->toPlainText();
     QString fileName = QFileDialog::getSaveFileName();
-    QFile file(fileName);
-    file.open(QIODevice::WriteOnly|QIODevice::Text);
-    QTextStream out(&file);
-    out<<str<<endl;
-    file.close();
+    File file(fileName);
+    file.save(tabController.currentTextEdit());
 }
-
 
 void TextEdit::on_actionMenuNotepad_triggered()
 {
