@@ -5,7 +5,6 @@
 
 File::File(QString fileName) : file(fileName)
 {
-    file.open(QIODevice::ReadWrite);
     File::fileName = fileName;
 }
 
@@ -23,31 +22,24 @@ void File::openInCard(QTabWidget *&tabWidget)
 }
 
 void File::save(QTextEdit *wsk){
+    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
+    QTextStream out(&file);
+    if(file.error())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Plik nie istnieje");
+        msgBox.exec();
+        return;
+    }
 
-
-
-
-
-
-         QTextStream out(&file);
-         if(file.error())
-         {
-             QMessageBox msgBox;
-             msgBox.setText("Plik nie istnieje");
-             msgBox.exec();
-             return;
-
-         }
-
-         out << wsk->toPlainText();
-
-
+    out << wsk->toPlainText();
 }
 
 
 // Zwraca treść pliku
 QString File::getFileContent()
 {
+    file.open(QIODevice::ReadWrite);
     if( !file.error() && file.exists() )
     {
         QTextStream fileStream(&file);

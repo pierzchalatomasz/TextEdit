@@ -97,7 +97,7 @@ QString TabController::cutFileName(QString fileName){
 // zwraca nazwę pliku z aktywnej karty
 QString TabController::currentFileName()
 {
-    return fileNames[tabWidget->currentIndex()];
+    return fileNames.at(tabWidget->currentIndex());
 }
 
 // zwraca wskaźnik do textEdit z otwartej karty
@@ -111,7 +111,7 @@ QTextEdit *TabController::currentTextEdit()
     return currentTextEdit;
 }
 
-// [~] zwraca wskaźnik do pola z numerami linii w otwartej karcie (niepoprawnie)
+// zwraca wskaźnik do pola z numerami linii w otwartej karcie
 QTextEdit *TabController::currentLineNumberArea(){
     int currentIndex = tabWidget->currentIndex();
 
@@ -130,7 +130,7 @@ void TabController::onCloseTab(int index)
         QWidget *tab = tabWidget->widget(index);
         tabWidget->removeTab(index);
         delete tab;
-
+        fileNames.removeAt(index);
     }
 }
 

@@ -215,6 +215,7 @@ void TextEdit::setConnections(){
 void TextEdit::updateLineNumArea(int num){
     lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }
+
 void TextEdit::on_actionSave_triggered()
 {
     File file(tabController.currentFileName());
