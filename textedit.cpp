@@ -110,15 +110,15 @@ void TextEdit::on_textEdit_textChanged()
 }
 
 // Opcje wywoływane z menu
-void TextEdit::on_actionMenuPaste_triggered(){
+void TextEdit::on_actionPaste_triggered(){
     menu.paste(tabController.currentTextEdit());
 }
 
-void TextEdit::on_actionMenuCopy_triggered(){
+void TextEdit::on_actionCopy_triggered(){
     menu.copy(tabController.currentTextEdit());
 }
 
-void TextEdit::on_actionMenuCut_triggered(){
+void TextEdit::on_actionCut_triggered(){
     menu.cut(tabController.currentTextEdit());
 }
 

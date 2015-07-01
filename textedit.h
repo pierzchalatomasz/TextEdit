@@ -31,9 +31,9 @@ private slots:
 
    // funkcje dla przycisków z menu
     void on_actionNewFile_triggered();
-    void on_actionMenuCopy_triggered();
-    void on_actionMenuCut_triggered();
-    void on_actionMenuPaste_triggered();
+    void on_actionCopy_triggered();
+    void on_actionCut_triggered();
+    void on_actionPaste_triggered();
     void on_actionMenuFont_triggered();
     void on_actionMenuUndo_triggered();
     void on_actionMenuRedo_triggered();
@@ -43,9 +43,7 @@ private slots:
     void on_actionMenuZoomIn_triggered();
     void on_actionSave_triggered();
     void on_actionSaveAs_triggered();
-
     void on_actionMenuNotepad_triggered();
-
     void on_actionMenuColorPicker_triggered();
 
 private:
