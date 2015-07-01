@@ -20,7 +20,7 @@ public:
     void undo(QTextEdit *editor);
     void redo(QTextEdit *editor);
     void selectAll(QTextEdit *editor);
-    void saveAs(QTextEdit *editor);
+    void save(QTextEdit *editor);
     // Ustawienia
     void zoomIn(QTextEdit *editor);
     void zoomOut(QTextEdit *editor);

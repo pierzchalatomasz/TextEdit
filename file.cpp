@@ -22,13 +22,28 @@ void File::openInCard(QTabWidget *&tabWidget)
     tabWidget->setCurrentIndex(tabIndex - 1);
 }
 
-void File::save(QString str){
-    QFile file(fileName);
-    file.open(QIODevice::WriteOnly|QIODevice::Text);
-    QTextStream out(&file);
-    out<<str<<endl;
-    file.close();
+void File::save(QTextEdit *wsk){
+
+
+
+
+
+
+         QTextStream out(&file);
+         if(file.error())
+         {
+             QMessageBox msgBox;
+             msgBox.setText("Plik nie istnieje");
+             msgBox.exec();
+             return;
+
+         }
+
+         out << wsk->toPlainText();
+
+
 }
+
 
 // Zwraca treść pliku
 QString File::getFileContent()

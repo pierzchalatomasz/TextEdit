@@ -187,31 +187,11 @@ void TextEdit::setConnections(){
 void TextEdit::updateLineNumArea(int num){
     lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }
-
 void TextEdit::on_actionSave_triggered()
 {
-   /*
-        mFile = new QFile;
-
-        if(sciezka!="") mFile->setFileName(sciezka);
-        else
-        {
-            mFile->setFileName(QFileDialog::getSaveFileName(this, "Save file", "/home",""));
-            sciezka = mFile->fileName();
-        }
-
-        out = new QTextStream(mFile);
-
-        if(!mFile->open(QFile::WriteOnly))
-        {
-            QMessageBox::information(this,"Błąd", "Plik nie istnieje bądź jest tylko do odczytu");
-            return;
-        }
-
-        *out << tabController.currentTextEdit()->toPlainText();
-        mFile->close();
-        */
-    }
+    File file(tabController.currentFileName());
+    file.save(tabController.currentTextEdit());
+}
 
 
 //zapisywanie pliku jako..
