@@ -36,20 +36,7 @@ void TabController::newTab(QString fileName)
     textEdit->setProperty("currentIndex", QVariant(0));
 
     gridLayout->addWidget(textEdit, 0, 1, 1, 1);
-/*
-    QScrollArea *scrollArea = new QScrollArea(newTab);
-    scrollArea->setObjectName(QStringLiteral("scrollArea"));
-    scrollArea->setMaximumSize(QSize(30, 16777215));
-    scrollArea->setStyleSheet(QStringLiteral("background: #494949;"));
-    scrollArea->setWidgetResizable(true);
 
-    QWidget *scrollAreaWidgetContents = new QWidget();
-    scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-    scrollAreaWidgetContents->setGeometry(QRect(0, 0, 30, 313));
-    scrollArea->setWidget(scrollAreaWidgetContents);
-
-    gridLayout->addWidget(scrollArea, 0, 0, 1, 1);
-*/
     QTextEdit *lineNumberArea = new QTextEdit();
     lineNumberArea->setObjectName(QStringLiteral("lineNumberArea"));
     lineNumberArea->setMaximumSize(QSize(40, 16777215));

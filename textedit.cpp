@@ -195,23 +195,6 @@ void TextEdit::setConnections(){
     connect(tabController.currentTextEdit(),SIGNAL(textChanged()),this,SLOT(on_currentTextEdit_textChanged()));
 }
 
-//zapisanie pliku
-/*int save( const QString & input, const QString & s  )
- {
-  FILE *fp;
-  QString file = input;
-  if ( (fp=fopen(s, "w")) != NULL ) {
-     fputs(file, fp);
-     fclose(fp);
-     } else {
-     QMessageBox sch ( "ERROR", "Blad otwarcia pliku.",
-           QMessageBox::Warning,
-           QMessageBox::Ok, 0, 0 );
-     sch.exec();
-     }
- return 0;
- }*/
-
 void TextEdit::updateLineNumArea(int num){
     lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }
@@ -223,7 +206,7 @@ void TextEdit::on_actionSave_triggered()
 }
 
 
-//zapisywanie pliku jako..
+// zapisywanie pliku jako
 void TextEdit::on_actionSaveAs_triggered()
 {
     QString str = tabController.currentTextEdit()->toPlainText();
