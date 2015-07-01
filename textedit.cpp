@@ -94,7 +94,7 @@ void TextEdit::setLineNumberArea(){
 
 void TextEdit::on_currentTextEdit_textChanged()
 {
-    // Dodawanie tabów wewnątrz elementu
+    // Dodawanie wcięć wewnątrz elementu
     textFormatter.tabsInsideElements(tabController.currentTextEdit());
 }
 
@@ -112,12 +112,6 @@ void TextEdit::on_actionNewFile_triggered()
     tabController.newTab(fileName);
     File file(fileName);
     file.openInCard(ui->tabWidget);
-}
-
-// Zamykanie znaczników
-void TextEdit::on_textEdit_textChanged()
-{
-    textFormatter.elementsClosing(ui->textEdit);
 }
 
 // Opcje wywoływane z menu
@@ -199,13 +193,14 @@ void TextEdit::updateLineNumArea(int num){
     lineNumbering.updateLineNumberArea(tabController.currentLineNumberArea(), num);
 }
 
+// zapis pliku
 void TextEdit::on_actionSave_triggered()
 {
     File file(tabController.currentFileName());
     file.save(tabController.currentTextEdit());
 }
 
-// zapisywanie pliku jako
+// zapis pliku jako
 void TextEdit::on_actionSaveAs_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName();
