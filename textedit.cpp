@@ -68,9 +68,20 @@ void TextEdit::on_actionOpenFile_triggered()
     tabController.newTab(fileName);
     file.openInCard(ui->tabWidget);
 
-    syntaxHighlighter(file.checkFileType());
+    int typeOfFile = file.checkFileType(); // użyłem osobnej zmiennej, by wielokrotnie nie pojawiło się okienko
+    syntaxHighlighter(typeOfFile);         // z komunikatem, przy niewspieranym formacie pliku
     connect(tabController.currentTextEdit(),SIGNAL(cursorPositionChanged()),this,SLOT(on_currentTextEdit_cursorPositionChanged()));
     setLineNumberArea();
+
+    if(typeOfFile == 2)
+            tabController.currentTextEdit()->setMaximumHeight(3333);
+            // w ten dziwny sposób oznaczam pliki CSS, wykorzystuję to przy opcji
+            // wł/wył kol. składni by wiedzieć czy ustawić je na HTML czy na CSS
+            // sprawdzam wtedy czy maximum height jest ustawione na 3333
+     if((typeOfFile == 3)||(typeOfFile == 0))
+            tabController.currentTextEdit()->setMaximumHeight(4444);
+            // tak oznaczone są pliki txt i inne, żadne z nich nie powinny mieć
+            // możliwości przełaczenia kolorowania składni /wili
 }
 
 void TextEdit::setLineNumberArea(){
@@ -138,8 +149,19 @@ void TextEdit::on_actionMenuFont_triggered(){
     menu.selectFont(tabController.currentTextEdit(), tabController.currentLineNumberArea());
 }
 
+// wł/wył kolorowania składni (3333 to CSS, a 4444 to txt i formaty nieobsługiwane)
 void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
-    menu.toggleSyntaxHighlighting(tabController.currentTextEdit());
+    static int mode = 1; mode = (-1)*mode;
+        if(tabController.currentTextEdit()->maximumHeight() == 4444)
+            return;
+        if(mode == -1)
+            menu.toggleSyntaxHighlighting(tabController.currentTextEdit());
+        else{
+            if(tabController.currentTextEdit()->maximumHeight() == 3333)
+                syntaxHighlighter(2); // kolorwanie dla CSS
+            else
+                syntaxHighlighter(1); // kolrowanie dla HTML
+        }
 }
 
 void TextEdit::on_actionMenuZoomIn_triggered(){

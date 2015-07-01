@@ -255,13 +255,13 @@ color: #ccc;</string>
   </action>
   <action name="actionMenuSyntaxHighlighting">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
-    <string>Koloruj składnię</string>
+    <string>Przełacz kolorowanie składni</string>
    </property>
   </action>
   <action name="actionMenuZoomIn">

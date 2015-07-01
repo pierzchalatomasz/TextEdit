@@ -19,23 +19,16 @@ void Menu::selectFont(QTextEdit *editor, QTextEdit *lineNum){
     }
 }
 
+// wyłaczenie kolorowania składni, włączenie przebiega w textedit.cpp
 void Menu::toggleSyntaxHighlighting(QTextEdit *editor){
-    static int mode = 1; // kolorowanie wł = 1, wył = -1
-    mode = -mode;
-
-    if(mode == -1){
         foreach(QSyntaxHighlighter* highlighter,
                 editor->findChildren<QSyntaxHighlighter*>()) {
             delete highlighter;
         }
-
         QColor defaultcolor;
         defaultcolor.setRgb(60, 60, 60);
         editor->setTextColor(defaultcolor);
-    }
-    //else
-      //editor->
-}   //(??? czemu) syntaxHighlighter us not a member of 'QTextEdit'
+}
 
 void Menu::zoomIn(QTextEdit *editor, QTextEdit *lineNum){
     editor->zoomIn(2);
