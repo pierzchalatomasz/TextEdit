@@ -186,10 +186,18 @@ color: #ccc;</string>
     <addaction name="actionMenuZoomIn"/>
     <addaction name="actionMenuZoomOut"/>
    </widget>
+   <widget class="QMenu" name="menuDodatki">
+    <property name="title">
+     <string>Narzędzia</string>
+    </property>
+    <addaction name="actionMenuNotepad"/>
+    <addaction name="actionMenuColorPicker"/>
+   </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
    <addaction name="menuEdycja"/>
    <addaction name="menuUstawienia"/>
+   <addaction name="menuDodatki"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -273,6 +281,16 @@ color: #ccc;</string>
   <action name="actionSaveAs">
    <property name="text">
     <string>Zapisz jako</string>
+   </property>
+  </action>
+  <action name="actionMenuNotepad">
+   <property name="text">
+    <string>Notatnik</string>
+   </property>
+  </action>
+  <action name="actionMenuColorPicker">
+   <property name="text">
+    <string>Generator kolorów</string>
    </property>
   </action>
  </widget>

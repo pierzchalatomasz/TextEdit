@@ -6,6 +6,8 @@
 #include <tabcontroller.h>
 #include <menu.h>
 #include <linenumbering.h>
+#include <notepad.h>
+#include <colorpicker.h>
 
 namespace Ui {
 class TextEdit;
@@ -42,6 +44,10 @@ private slots:
     void on_actionSave_triggered();
     void on_actionSaveAs_triggered();
 
+    void on_actionMenuNotepad_triggered();
+
+    void on_actionMenuColorPicker_triggered();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );
@@ -55,6 +61,8 @@ private:
     TabController tabController;
     Menu menu;
     LineNumbering lineNumbering;
+    Notepad *notepad;
+    ColorPicker *colorPicker;
 };
 
 #endif // TEXTEDIT_H

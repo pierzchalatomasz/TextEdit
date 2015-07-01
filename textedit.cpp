@@ -226,3 +226,15 @@ void TextEdit::on_actionSaveAs_triggered()
     file.close();
 }
 
+
+void TextEdit::on_actionMenuNotepad_triggered()
+{
+    Notepad *notepad = new Notepad(this);
+    notepad->show();
+}
+
+void TextEdit::on_actionMenuColorPicker_triggered()
+{
+    ColorPicker *colorPicker = new ColorPicker(this);
+    colorPicker->show();
+}

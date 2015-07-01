@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     textformatter.cpp \
     tabcontroller.cpp \
     menu.cpp \
-    linenumbering.cpp
+    linenumbering.cpp \
+    notepad.cpp \
+    colorpicker.cpp
 
 HEADERS  += textedit.h \
     syntaxhighlighter.h \
@@ -31,9 +33,13 @@ HEADERS  += textedit.h \
     textformatter.h \
     tabcontroller.h \
     menu.h \
-    linenumbering.h
+    linenumbering.h \
+    notepad.h \
+    colorpicker.h
 
-FORMS    += textedit.ui
+FORMS    += textedit.ui \
+    notepad.ui \
+    colorpicker.ui
 
 RESOURCES += \
     icons.qrc
