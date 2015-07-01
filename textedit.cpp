@@ -4,14 +4,14 @@
 #include <QTextStream>
 #include <QString>
 #include <QDialog>
-#include <syntaxhighlighter.h>
+#include "syntaxhighlighter.h"
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
-#include <file.h>
+#include "file.h"
 #include <QFontDialog>
 #include <QShortcut>
-#include <textformatter.h>
+#include "textformatter.h"
 #include <QTextDocument>
 #include <QScrollBar>
 
@@ -92,7 +92,6 @@ void TextEdit::on_currentTextEdit_textChanged()
 void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
     textFormatter.lineHighlighter(tabController.currentTextEdit());
-    textFormatter.highlightBlock(tabController.currentTextEdit());
 }
 
 // stworzenie nowego pliku
@@ -137,16 +136,18 @@ void TextEdit::on_actionMenuFont_triggered(){
 void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
     static int mode = 1; mode = (-1)*mode;
     QString name = tabController.currentFileName();
-        if((!name.endsWith("css")) && (!name.endsWith("html")) && (!name.endsWith("htm")))
-            return;
-        if(mode == -1)
-            menu.toggleSyntaxHighlighting(tabController.currentTextEdit());
-        else{
-            if(name.endsWith("css"))
-                syntaxHighlighter(2); // kolorwanie dla CSS
-            else
-                syntaxHighlighter(1); // kolrowanie dla HTML
-        }
+
+    if((!name.endsWith("css")) && (!name.endsWith("html")) && (!name.endsWith("htm")))
+        return;
+    if(mode == -1)
+        menu.toggleSyntaxHighlighting(tabController.currentTextEdit());
+    else
+    {
+        if(name.endsWith("css"))
+            syntaxHighlighter(2); // kolorowanie dla CSS
+        else
+            syntaxHighlighter(1); // kolrowanie dla HTML
+    }
 }
 
 void TextEdit::on_actionMenuZoomIn_triggered(){

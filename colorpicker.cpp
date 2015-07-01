@@ -23,8 +23,8 @@ ColorPicker::~ColorPicker()
     delete ui;
 }
 
-void ColorPicker::setElements(){
-
+void ColorPicker::setElements()
+{
     ui->redSlider->setRange(0,255);
     ui->greenSlider->setRange(0,255);
     ui->blueSlider->setRange(0,255);
@@ -32,12 +32,10 @@ void ColorPicker::setElements(){
     ui->redValue->setRange(0,255);
     ui->greenValue->setRange(0,255);
     ui->blueValue->setRange(0,255);
-
-    //ui->colorPreview->setReadOnly(true);
 }
 
-void ColorPicker::setConnections(){
-
+void ColorPicker::setConnections()
+{
     connect(ui->redSlider,SIGNAL(valueChanged(int)),SLOT(colorChanged()));
     connect(ui->greenSlider,SIGNAL(valueChanged(int)),SLOT(colorChanged()));
     connect(ui->blueSlider,SIGNAL(valueChanged(int)),SLOT(colorChanged()));
@@ -52,8 +50,8 @@ void ColorPicker::setConnections(){
 }
 
 // maluje pole podglądu na wybrany kolor
-void ColorPicker::colorChanged(){
-
+void ColorPicker::colorChanged()
+{
     QString RGB = "rgb("
                 + QString::number(ui->redSlider->value()) + ","
                 + QString::number(ui->greenSlider->value()) + ","

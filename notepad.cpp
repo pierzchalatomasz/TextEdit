@@ -25,7 +25,8 @@ Notepad::~Notepad()
     delete ui;
 }
 
-void Notepad::setData(){
+void Notepad::setData()
+{
     QFile file("notepadData.txt");
     QString text;
     file.open(QIODevice::ReadWrite);
@@ -36,14 +37,12 @@ void Notepad::setData(){
     ui->noteArea->append(text);
 }
 
-void Notepad::saveData(){
-
+void Notepad::saveData()
+{
     QFile file("notepadData.txt");
     QString text = ui->noteArea->toPlainText();
     file.open(QIODevice::WriteOnly|QIODevice::Text);
     QTextStream out(&file);
     out<<text<<endl;
     file.close();
-
-
 }
