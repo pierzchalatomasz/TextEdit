@@ -4,14 +4,14 @@
 #include <QTextStream>
 #include <QString>
 #include <QDialog>
-#include <syntaxhighlighter.h>
+#include "syntaxhighlighter.h"
 #include <QFileDialog>
 #include <QBrush>
 #include "styles.h"
-#include <file.h>
+#include "file.h"
 #include <QFontDialog>
 #include <QShortcut>
-#include <textformatter.h>
+#include "textformatter.h"
 #include <QTextDocument>
 #include <QScrollBar>
 
@@ -92,7 +92,6 @@ void TextEdit::on_currentTextEdit_textChanged()
 void TextEdit::on_currentTextEdit_cursorPositionChanged()
 {
     textFormatter.lineHighlighter(tabController.currentTextEdit());
-    textFormatter.highlightBlock(tabController.currentTextEdit());
 }
 
 // stworzenie nowego pliku

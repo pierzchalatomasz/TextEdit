@@ -11,7 +11,7 @@ void TabController::init(QTabWidget *&getTabWidget)
     QObject::connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(onCloseTab(int)));
 }
 
-// Tworzy nową kartę (layout skopiowany z designera)
+// Tworzy nową kartę (layout z designera)
 void TabController::newTab(QString fileName)
 {
     QWidget *newTab = new QWidget;
@@ -99,7 +99,8 @@ QTextEdit *TabController::currentTextEdit()
 }
 
 // zwraca wskaźnik do pola z numerami linii w otwartej karcie
-QTextEdit *TabController::currentLineNumberArea(){
+QTextEdit *TabController::currentLineNumberArea()
+{
     int currentIndex = tabWidget->currentIndex();
 
     QList<QTextEdit *> allLineNumberAreas = tabWidget->widget(currentIndex)->findChildren<QTextEdit *>("lineNumberArea");

@@ -7,6 +7,7 @@ void SyntaxHighlighter::setFileType(int fileType)
 
 void SyntaxHighlighter::highlightBlock(const QString &text)
 {
+    // HTML
     if(fileType == 1)
     {
         // Elementy, np. <div>
@@ -24,6 +25,7 @@ void SyntaxHighlighter::highlightBlock(const QString &text)
         // Komentarze
         regExpFormatting( text, "<!--[\\s]*.*[\\s]*-->", Qt::gray );
     }
+    // CSS
     else if(fileType == 2)
     {
         // Komentarze CSS
@@ -53,7 +55,8 @@ void SyntaxHighlighter::regExpFormatting( const QString &text, QString pattern, 
 
     QRegExp expression(pattern);
     int index = text.indexOf(expression);
-    while (index >= 0) {
+    while (index >= 0)
+    {
         int length = expression.matchedLength();
         setFormat(index, length, markup);
         index = text.indexOf(expression, index + length);
