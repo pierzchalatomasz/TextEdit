@@ -143,12 +143,18 @@ void TextEdit::on_actionMenuSyntaxHighlighting_triggered(){
 }
 
 void TextEdit::on_actionMenuZoomIn_triggered(){
-    menu.zoomIn(tabController.currentTextEdit());
+    menu.zoomIn(tabController.currentTextEdit(), tabController.currentLineNumberArea());
 }
 
 void TextEdit::on_actionMenuZoomOut_triggered(){
-    menu.zoomOut(tabController.currentTextEdit());
+    menu.zoomOut(tabController.currentTextEdit(),tabController.currentLineNumberArea());
 }
+
+void TextEdit::on_actionMenuInsertHTMLTemplate_triggered()
+{
+    menu.InsertHTMLTemplate(tabController.currentTextEdit());
+}
+
 
 // Aktywuje potrzebne połączenia sygnał -> slot
 void TextEdit::setConnections(){
@@ -218,3 +224,4 @@ void TextEdit::on_actionMenuColorPicker_triggered()
     ColorPicker *colorPicker = new ColorPicker(this);
     colorPicker->show();
 }
+

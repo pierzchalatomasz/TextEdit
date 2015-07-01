@@ -22,10 +22,12 @@ public:
     void selectAll(QTextEdit *editor);
     void save(QTextEdit *editor);
     // Ustawienia
-    void zoomIn(QTextEdit *editor);
-    void zoomOut(QTextEdit *editor);
+    void zoomIn(QTextEdit *editor, QTextEdit *lineNum);
+    void zoomOut(QTextEdit *editor, QTextEdit *lineNum);
     void selectFont(QTextEdit *editor, QTextEdit *lineNum);
     void toggleSyntaxHighlighting(QTextEdit *editor);
+    // Inne
+    void InsertHTMLTemplate(QTextEdit *editor);
 
 };
 

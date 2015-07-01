@@ -2,7 +2,6 @@
 #include "textedit.h"
 #include<QShortcut>
 
-
 Menu::Menu()
 {
 
@@ -38,15 +37,16 @@ void Menu::toggleSyntaxHighlighting(QTextEdit *editor){
       //editor->
 }   //(??? czemu) syntaxHighlighter us not a member of 'QTextEdit'
 
-void Menu::zoomIn(QTextEdit *editor){
+void Menu::zoomIn(QTextEdit *editor, QTextEdit *lineNum){
     editor->zoomIn(2);
+    lineNum->zoomIn(2);
 }
 
-void Menu::zoomOut(QTextEdit *editor){
+void Menu::zoomOut(QTextEdit *editor, QTextEdit *lineNum){
     editor->zoomOut(2);
+    lineNum->zoomOut(2);
 }
 
-//do poprawienia
 void Menu::paste(QTextEdit *editor){
     QApplication::postEvent( editor, new QKeyEvent
                              (QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier));
@@ -94,4 +94,19 @@ void Menu::save(QTextEdit *editor){
     QApplication::postEvent( editor, new QKeyEvent
                              (QEvent::KeyRelease, Qt::Key_S, Qt::ControlModifier));
 
+}
+
+
+// wstawia prosty szablon html
+void Menu::InsertHTMLTemplate(QTextEdit *editor){
+    editor->insertPlainText("<!DOCTYPE html>\n");
+    editor->insertPlainText("<html>\n");
+    editor->insertPlainText("<head>\n");
+    editor->insertPlainText("\t<title></title>\n");
+    editor->insertPlainText("\t<meta charset=\"UTF-8\">\n");
+    //editor->insertPlainText("<link rel=\"stylesheet\" type=\"text/css\" href=\"\">\n");
+    editor->insertPlainText("</head>\n");
+    editor->insertPlainText("<body>\n");
+    editor->insertPlainText("</body>\n");
+    editor->insertPlainText("</html>");
 }

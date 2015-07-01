@@ -46,6 +46,8 @@ private slots:
     void on_actionMenuNotepad_triggered();
     void on_actionMenuColorPicker_triggered();
 
+    void on_actionMenuInsertHTMLTemplate_triggered();
+
 private:
     Ui::TextEdit *ui;
     void loadFile( QString fileName );

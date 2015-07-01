@@ -192,6 +192,7 @@ color: #ccc;</string>
     </property>
     <addaction name="actionMenuNotepad"/>
     <addaction name="actionMenuColorPicker"/>
+    <addaction name="actionMenuInsertHTMLTemplate"/>
    </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuSzukaj"/>
@@ -291,6 +292,11 @@ color: #ccc;</string>
   <action name="actionMenuColorPicker">
    <property name="text">
     <string>Generator kolorów</string>
+   </property>
+  </action>
+  <action name="actionMenuInsertHTMLTemplate">
+   <property name="text">
+    <string>Wstaw szablon HTML</string>
    </property>
   </action>
  </widget>
